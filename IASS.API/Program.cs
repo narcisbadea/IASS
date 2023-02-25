@@ -6,12 +6,22 @@ using System.Text;
 using IASS.DAL.DbContext;
 using IASS.DAL.Entities;
 using IASS.BLL.Mapper;
+using IASS.BLL.Services.Interfaces;
+using IASS.DAL.Repositories.Interfaces;
+using IASS.DAL.Repositories.Implementation;
+using IASS.BLL.Services.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+//Repository
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<AppDbContext>();
 

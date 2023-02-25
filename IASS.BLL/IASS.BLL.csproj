@@ -16,10 +16,4 @@
     <ProjectReference Include="..\IASS.DAL\IASS.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Services\Implementation\" />
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
 </Project>
