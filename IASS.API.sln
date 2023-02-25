@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IASS.API", "IASS.API\IASS.API.csproj", "{287360F8-C7AF-4D23-B3F5-FE262545E130}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IASS.BLL", "IASS.BLL\IASS.BLL.csproj", "{301BE4F9-D561-45CA-A295-3CDAC540295A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IASS.DAL", "IASS.DAL\IASS.DAL.csproj", "{3412689B-F808-4A50-A0BE-13AB661C4FF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{287360F8-C7AF-4D23-B3F5-FE262545E130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{287360F8-C7AF-4D23-B3F5-FE262545E130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{287360F8-C7AF-4D23-B3F5-FE262545E130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{287360F8-C7AF-4D23-B3F5-FE262545E130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301BE4F9-D561-45CA-A295-3CDAC540295A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301BE4F9-D561-45CA-A295-3CDAC540295A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301BE4F9-D561-45CA-A295-3CDAC540295A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301BE4F9-D561-45CA-A295-3CDAC540295A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3412689B-F808-4A50-A0BE-13AB661C4FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3412689B-F808-4A50-A0BE-13AB661C4FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3412689B-F808-4A50-A0BE-13AB661C4FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3412689B-F808-4A50-A0BE-13AB661C4FF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B78CFCF2-B9F8-4BB3-A23D-97CCC0AE50B1}
+	EndGlobalSection
+EndGlobal
