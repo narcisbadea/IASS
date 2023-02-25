@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\IASS.BLL\IASS.BLL.csproj" />
     <ProjectReference Include="..\IASS.DAL\IASS.DAL.csproj" />
   </ItemGroup>
