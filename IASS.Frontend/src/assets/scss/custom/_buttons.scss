@@ -1,0 +1,47 @@
+.btn {
+  &.btn-primary {
+    color: $white;
+    background-color: $primary;
+  }
+
+  &.btn-secondary {
+    color: $app-text-gray1;
+    background-color: $app-forms-background;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $white;
+    background-color: $app-tertiary-main;
+  }
+}
+
+.btn-link {
+  font-weight: $font-weight-bold;
+  color: $app-secondary-main;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: $app-primary-main;
+  }
+
+  &:hover {
+    color: $app-primary-main;
+  }
+}
+
+a:link {
+  text-decoration: none;
+  font-weight: $headings-font-weight;
+}
+
+.breadcrumb {
+  text-transform: none;
+}

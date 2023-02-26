@@ -1,0 +1,76 @@
+$alert-danger: (
+  "bg": $alert-bg-danger,
+  "color": $alert-text-danger,
+  "border": $alert-border-danger,
+  "image":
+    url("data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 24C18.6281 24 24 18.6281 24 12C24 5.37188 18.6281 0 12 0C5.37188 0 0 5.37188 0 12C0 18.6281 5.37188 24 12 24ZM12 6C12.6234 6 13.125 6.50156 13.125 7.125V12.375C13.125 12.9984 12.6234 13.5 12 13.5C11.3766 13.5 10.875 12.9984 10.875 12.375V7.125C10.875 6.50156 11.3766 6 12 6ZM13.5 16.5C13.5 17.3297 12.8297 18 12 18C11.1703 18 10.5 17.3297 10.5 16.5C10.5 15.6703 11.1703 15 12 15C12.8297 15 13.5 15.6703 13.5 16.5Z' fill='#D72D2F'/></svg>"),
+);
+
+$alert-info: (
+  "bg": $alert-bg-info,
+  "color": $alert-text-info,
+  "border": $alert-border-info,
+  "image":
+    url("data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 24C18.6281 24 24 18.6281 24 12C24 5.37188 18.6281 0 12 0C5.37188 0 0 5.37188 0 12C0 18.6281 5.37188 24 12 24ZM10.125 15.75H11.25V12.75H10.125C9.50156 12.75 9 12.2484 9 11.625C9 11.0016 9.50156 10.5 10.125 10.5H12.375C12.9984 10.5 13.5 11.0016 13.5 11.625V15.75H13.875C14.4984 15.75 15 16.2516 15 16.875C15 17.4984 14.4984 18 13.875 18H10.125C9.50156 18 9 17.4984 9 16.875C9 16.2516 9.50156 15.75 10.125 15.75ZM12 9C11.1703 9 10.5 8.32969 10.5 7.5C10.5 6.67031 11.1703 6 12 6C12.8297 6 13.5 6.67031 13.5 7.5C13.5 8.32969 12.8297 9 12 9Z' fill='#4775FF'/></svg>"),
+);
+
+$alert-warning: (
+  "bg": $alert-bg-warning,
+  "color": $alert-text-warning,
+  "border": $alert-border-warning,
+  "image":
+    url("data:image/svg+xml,<svg width='24' height='22' viewBox='0 0 24 22' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 0.5C12.6656 0.5 13.2797 0.851562 13.6172 1.42812L23.7422 18.6781C24.0844 19.2594 24.0844 19.9766 23.7515 20.5578C23.4187 21.1391 22.7953 21.5 22.125 21.5H1.87498C1.20467 21.5 0.581229 21.1391 0.248416 20.5578C-0.0843962 19.9766 -0.0797087 19.2547 0.257791 18.6781L10.3828 1.42812C10.7203 0.851562 11.3344 0.5 12 0.5ZM12 6.5C11.3765 6.5 10.875 7.00156 10.875 7.625V12.875C10.875 13.4984 11.3765 14 12 14C12.6234 14 13.125 13.4984 13.125 12.875V7.625C13.125 7.00156 12.6234 6.5 12 6.5ZM13.5 17C13.5 16.1703 12.8297 15.5 12 15.5C11.1703 15.5 10.5 16.1703 10.5 17C10.5 17.8297 11.1703 18.5 12 18.5C12.8297 18.5 13.5 17.8297 13.5 17Z' fill='#FBBC04'/></svg>"),
+);
+
+$alert-success: (
+  "bg": $alert-bg-success,
+  "color": $alert-text-success,
+  "border": $alert-border-success,
+  "image":
+    url("data:image/svg+xml,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 24C18.6281 24 24 18.6281 24 12C24 5.37188 18.6281 0 12 0C5.37188 0 0 5.37188 0 12C0 18.6281 5.37188 24 12 24ZM17.2969 9.79688L11.2969 15.7969C10.8562 16.2375 10.1438 16.2375 9.70781 15.7969L6.70781 12.7969C6.26719 12.3562 6.26719 11.6438 6.70781 11.2078C7.14844 10.7719 7.86094 10.7672 8.29688 11.2078L10.5 13.4109L15.7031 8.20312C16.1437 7.7625 16.8562 7.7625 17.2922 8.20312C17.7281 8.64375 17.7328 9.35625 17.2922 9.79219L17.2969 9.79688Z' fill='#317159'/></svg>"),
+);
+
+$alert-types: (
+  "info": $alert-info,
+  "success": $alert-success,
+  "warning": $alert-warning,
+  "danger": $alert-danger,
+);
+
+@mixin colorSet($alertType) {
+  border-color: $alert-border-#{$alertType};
+  color: $alert-text-#{$alertType};
+  background-color: $alert-bg-#{$alertType};
+}
+
+.alert {
+  &::before {
+    content: "";
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  > * {
+    flex: 1;
+  }
+}
+
+@each $state, $value in $alert-types {
+  $alert-color: map-get($value, "color");
+  $alert-border: map-get($value, "border");
+  $alert-bg: map-get($value, "bg");
+  $alert-img: map-get($value, "image");
+
+  .alert-#{$state} {
+    border-color: $alert-border;
+    color: $alert-color;
+    background-color: $alert-bg;
+
+    &::before {
+      background-image: escape-svg($alert-img);
+    }
+  }
+}

@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
         {
             role = "Admin";
         }
-        return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString(), expiresIn = expires, role = role });
+        return Ok(new JwtSecurityTokenHandler().WriteToken(token).ToString());
     }
 
     [HttpGet("logged-username")]

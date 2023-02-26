@@ -10,47 +10,45 @@ import { AlertComponent } from './alert.component';
   providedIn: 'root',
 })
 export class AlertService {
-  private overlayRef: OverlayRef = null;
-  private alertEvent$ = new BehaviorSubject<Alert>(null);
 
   constructor(private overlay: Overlay) {}
 
-  info(message: string) {
-    this._createAlert(AlertType.Info, message);
-  }
+  // info(message: string) {
+  //   this._createAlert(AlertType.Info, message);
+  // }
 
-  error(message: string) {
-    this._createAlert(AlertType.Error, message);
-  }
+  // error(message: string) {
+  //   this._createAlert(AlertType.Error, message);
+  // }
 
-  warning(message: string) {
-    this._createAlert(AlertType.Warning, message);
-  }
+  // warning(message: string) {
+  //   this._createAlert(AlertType.Warning, message);
+  // }
 
-  success(message: string) {
-    this._createAlert(AlertType.Success, message);
-  }
+  // success(message: string) {
+  //   this._createAlert(AlertType.Success, message);
+  // }
 
-  show(alertType: AlertType, message: string) {
-    this._createAlert(alertType, message);
-  }
+  // show(alertType: AlertType, message: string) {
+  //   this._createAlert(alertType, message);
+  // }
 
-  getAlerts(): Observable<Alert> {
-    return this.alertEvent$.asObservable();
-  }
+  // getAlerts(): Observable<Alert> {
+  //   return this.alertEvent$.asObservable();
+  // }
 
-  private _createAlert(type: AlertType, message: string) {
-    // initial setup
-    if (!this.overlayRef) {
-      this._createOverlay();
-    }
+  // private _createAlert(type: AlertType, message: string) {
+  //   // initial setup
+  //   if (!this.overlayRef) {
+  //     this._createOverlay();
+  //   }
 
-    this.alertEvent$.next({
-      type: type,
-      message: message,
-      timeout: AlertTypeTimeout[type],
-    });
-  }
+  //   this.alertEvent$.next({
+  //     type: type,
+  //     message: message,
+  //     timeout: AlertTypeTimeout[type],
+  //   });
+  // }
 
   private _createOverlay() {
     const overlayConfig = new OverlayConfig({
@@ -60,7 +58,7 @@ export class AlertService {
       maxWidth: 350,
     });
 
-    this.overlayRef = this.overlay.create(overlayConfig);
-    this.overlayRef.attach(new ComponentPortal(AlertComponent));
+    // this.overlayRef = this.overlay.create(overlayConfig);
+    // this.overlayRef.attach(new ComponentPortal(AlertComponent));
   }
 }

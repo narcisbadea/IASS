@@ -1,7 +1,7 @@
 export enum Features {
   Profile = 'Profile',
   Dashboard = 'Dashboard',
-  Employees = 'Employees',
+  Patients = 'Patients',
 }
 
 export enum Permission {

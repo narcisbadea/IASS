@@ -1,10 +1,14 @@
-import { environment } from './../environments/environment';
+import { LayoutComponent } from './layout/layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
-import { AuthGuard } from './core/auth/auth.guard';
+import { Features } from './core/utils/models';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./views/login/login.module').then((m) => m.LoginModule),
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -20,17 +24,15 @@ const routes: Routes = [
           import('./views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
-        canActivate: [AuthGuard],
         data: { feature: Features.Dashboard },
       },
       {
-        path: 'employees',
+        path: 'patients',
         loadChildren: () =>
-          import('./views/employees/employees.module').then(
-            (m) => m.EmployeesModule
+          import('./views/patients/patients.module').then(
+            (m) => m.PatientsModule
           ),
-        canActivate: [AuthGuard],
-        data: { feature: Features.Employees },
+        data: { feature: Features.Patients },
       },
       {
         path: 'profile',
@@ -38,24 +40,11 @@ const routes: Routes = [
           import('./views/user-profile/user-profile.module').then(
             (m) => m.UserProfileModule
           ),
-        canActivate: [AuthGuard],
         data: { feature: Features.Profile },
       },
     ],
   },
 ];
-
-const routes_dev: Routes = [
-  {
-    path: 'style',
-    loadChildren: () =>
-      import('./views/style/style.module').then((m) => m.StyleModule),
-  },
-];
-
-if (!environment.production) {
-  routes.push(...routes_dev);
-}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -4,6 +4,7 @@ using IASS.DAL.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IASS.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230226123503_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,14 +54,14 @@ namespace IASS.DAL.Migrations
                         new
                         {
                             Id = "9d22ff52-1a0d-4832-997f-27e57e68ec9e",
-                            ConcurrencyStamp = "7023eeb4-f930-4390-94e8-ef27bac791b8",
+                            ConcurrencyStamp = "1d318671-ce33-47e6-b616-55d1cd7ecad8",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "b1a678cf-d7a2-415a-9a8f-52d51e067e88",
-                            ConcurrencyStamp = "037d8b4a-42ce-419b-ac66-5f9c4aa7d395",
+                            ConcurrencyStamp = "aced25e0-18f3-4a31-b3f1-0e00f634b617",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -74,6 +76,7 @@ namespace IASS.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CNP")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -88,9 +91,11 @@ namespace IASS.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")

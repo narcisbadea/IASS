@@ -1,7 +1,7 @@
 import { Subject, takeUntil } from 'rxjs';
 import { AlertService } from './../alert/alert.service';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Alert, AlertType } from './alert.config';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Alert } from './alert.config';
 
 @Component({
   selector: 'app-alert',
@@ -16,17 +16,17 @@ export class AlertComponent implements OnInit, OnDestroy {
   constructor(private service: AlertService) {}
 
   ngOnInit(): void {
-    this.service
-      .getAlerts()
-      .pipe(takeUntil(this.untilDestroy$))
-      .subscribe((alert) => {
-        if (alert) {
-          this.alerts.push(alert);
-        }
-      });
+    // this.service
+    //   .getAlerts()
+    //   .pipe(takeUntil(this.untilDestroy$))
+    //   .subscribe((alert) => {
+    //     if (alert) {
+    //       this.alerts.push(alert);
+    //     }
+    //   });
   }
 
-  close(alert): void {
+  close(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
   }
 
