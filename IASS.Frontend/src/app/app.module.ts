@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from './layout/layout/layout.module';
+import { LayoutModule } from './layout/layout.module';
 import { CoreModule } from './core/core.module';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { EmployeesComponent } from './views/employees/employees.component';
+import { UserProfileComponent } from './views/user-profile/user-profile.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LayoutComponent, DashboardComponent, EmployeesComponent, UserProfileComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
