@@ -1,0 +1,42 @@
+@import "config/_variables";
+@import "~bootstrap/scss/bootstrap";
+
+@import "custom/buttons";
+@import "custom/forms";
+@import "custom/navbar";
+
+@import "components/alert";
+@import "components/ng-select";
+@import "components/tables";
+
+body {
+  background-color: $app-bg-color;
+}
+
+// overlays go on top of ng-modal
+.cdk-overlay-container {
+  z-index: 1100;
+}
+
+.spinner-button {
+  margin-top: -4px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.spinner-table {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin-top: 13%;
+}
+
+.spinner-container {
+  width: auto;
+  height: 24px;
+}
+
+p.description {
+  white-space: pre-line;
+}

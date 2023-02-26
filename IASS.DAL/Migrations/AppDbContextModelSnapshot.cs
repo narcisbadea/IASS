@@ -52,14 +52,14 @@ namespace IASS.DAL.Migrations
                         new
                         {
                             Id = "9d22ff52-1a0d-4832-997f-27e57e68ec9e",
-                            ConcurrencyStamp = "0c6d3362-e328-4b1a-9a31-f7e70cf2c949",
+                            ConcurrencyStamp = "7023eeb4-f930-4390-94e8-ef27bac791b8",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "b1a678cf-d7a2-415a-9a8f-52d51e067e88",
-                            ConcurrencyStamp = "8ae31fc1-32d0-48af-bac2-ed42e9588b8b",
+                            ConcurrencyStamp = "037d8b4a-42ce-419b-ac66-5f9c4aa7d395",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -73,6 +73,9 @@ namespace IASS.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("CNP")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -83,6 +86,12 @@ namespace IASS.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

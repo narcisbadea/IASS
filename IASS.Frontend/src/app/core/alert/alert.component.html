@@ -1,0 +1,26 @@
+<div class="alert-container">
+  <ng-container *ngFor="let alert of alerts">
+    <ng-container
+      *ngTemplateOutlet="alertTemplate; context: { alert: alert }"
+    ></ng-container>
+  </ng-container>
+</div>
+
+<ng-template #alertTemplate let-alert="alert">
+  <div
+    class="alert alert-{{
+      alert.type
+    }} alert-dismissible d-flex align-items-center m-2"
+    (onTimeout)="close(alert)"
+  >
+    <div>
+      {{ alert.message }}
+    </div>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="close(alert)"
+    ></button>
+  </div>
+</ng-template>

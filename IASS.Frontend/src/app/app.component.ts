@@ -2,14 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <router-outlet *ngIf="!isIframe"></router-outlet>
-  `,
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  isIframe = false;
-
-  constructor() {
-    this.isIframe = window !== window.parent && !window.opener;
-  }
+  title = 'EnProfile.Frontend';
 }

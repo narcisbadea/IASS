@@ -1,0 +1,99 @@
+// Form check
+.form-check-label {
+  font-weight: $font-weight-normal;
+}
+
+.form-check-group {
+  display: flex;
+  flex-direction: row;
+
+  .form-check {
+    + .form-check {
+      margin-left: 2rem;
+    }
+  }
+
+  &.flex-fill {
+    .form-check {
+      flex: 1;
+      margin-left: 0;
+    }
+  }
+
+  .form-check-block {
+    position: relative;
+    padding: 0;
+
+    .form-check-input {
+      position: absolute;
+      opacity: 0;
+      margin: 0;
+
+      &:checked {
+        + .form-check-label {
+          background-color: $app-bg-color;
+          &::before {
+            background-color: $form-check-input-checked-bg-color;
+            border-color: $form-check-input-checked-border-color;
+            background-image: escape-svg($form-check-radio-checked-bg-image);
+          }
+        }
+      }
+    }
+
+    .form-check-label {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-radius: $border-radius;
+      border: 2px solid $app-forms-check-color;
+      background-color: $white;
+
+      &:hover {
+        background-color: rgba($app-bg-color, 0.5);
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        margin-right: 0.5rem;
+        width: $form-check-input-width;
+        height: $form-check-input-width;
+        background-color: $form-check-input-bg;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: $form-check-input-border;
+        border-radius: $form-check-radio-border-radius;
+        appearance: none;
+      }
+    }
+  }
+
+  // use gutter utilities to space out radio block elements
+  &.form-check-group-block {
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-0.5 * var(--bs-gutter-x));
+    margin-left: calc(-0.5 * var(--bs-gutter-x));
+
+    .form-check-block {
+      padding-right: calc(var(--bs-gutter-x) * 0.5);
+      padding-left: calc(var(--bs-gutter-x) * 0.5);
+      margin-top: var(--bs-gutter-y);
+    }
+  }
+}
+
+.form-control::-webkit-input-placeholder {
+  font-weight: $font-weight-light;
+  color: $input-placeholder-color;
+}
+.form-control::-moz-placeholder {
+  font-weight: $font-weight-light;
+  color: $input-placeholder-color;
+}
+.form-control::-ms-input-placeholder {
+  font-weight: $font-weight-light;
+  color: $input-placeholder-color;
+}

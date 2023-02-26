@@ -1,12 +1,13 @@
+import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LayoutModule } from './layout/layout.module';
 import { RouterModule } from '@angular/router';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from './layout/layout/layout.module';
-import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,11 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     RouterModule,
     LayoutModule,
-    HttpClientModule
-  ]
+    HttpClientModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,221 @@
+@import "_colors";
+
+// Theme colors
+$primary: $app-primary-main;
+$secondary: $app-secondary-main;
+$success: $app-alert-text-success;
+$info: $app-alert-text-info;
+$warning: $app-alert-text-warning;
+$danger: $app-alert-text-danger;
+$light: $app-forms-background;
+$dark: $app-text-gray1;
+
+$body-bg: $app-forms-background;
+$body-color: $app-text-gray1;
+
+// Typography
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.25;
+$font-family-base: "Roboto", sans-serif;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 500;
+$font-weight-bolder: 700;
+$font-weight-base: $font-weight-light;
+
+// headings-variables
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.5rem;
+$h4-font-size: 1.25rem;
+$h5-font-size: 1.125rem;
+$h6-font-size: 1rem;
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  sm: $font-size-sm,
+  lg: $font-size-lg,
+);
+
+$headings-font-family: "Roboto Condensed", sans-serif;
+$headings-font-style: normal;
+$headings-font-weight: 700;
+
+$text-muted: $app-tertiary-darker;
+
+// spacer-variables-maps
+$spacer: 1rem;
+// options
+$enable-shadows: true;
+$enable-negative-margins: true;
+$enable-validation-icons: true;
+
+// border
+$border-width: 1px;
+$border-radius: 0.5rem;
+$border-radius-sm: 0.25rem;
+$border-radius-lg: 0.75rem;
+$border-color: $app-border-color;
+
+// box-shadow
+$box-shadow: 0.125rem 0.25rem 0.625rem rgba($app-bg-shadow, 0.25);
+
+// Buttons
+$btn-padding-y: 0.75rem;
+$btn-padding-x: 1.5rem;
+$btn-font-family: $font-family-base;
+$btn-font-size: $font-size-base;
+$btn-font-weight: $font-weight-bold;
+$btn-border-width: 0;
+$btn-box-shadow: none;
+$btn-focus-width: 0;
+$btn-focus-box-shadow: none;
+$btn-disabled-opacity: 1;
+$btn-active-box-shadow: none;
+
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+// Forms
+$form-label-margin-bottom: 0rem;
+$form-label-font-size: $font-size-sm;
+$form-label-font-weight: $font-weight-bolder;
+$form-label-color: $app-text-gray1;
+
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+$input-font-family: $font-family-base;
+$input-font-size: $font-size-base;
+$input-font-weight: $font-weight-normal;
+
+$input-line-height: 1.375;
+
+$input-bg: $app-forms-background;
+$input-disabled-color: $white;
+$input-disabled-bg: $app-tertiary-main;
+
+$input-color: $body-color;
+$input-border-color: $body-bg;
+$input-box-shadow: none;
+
+$input-border-radius: $border-radius;
+$input-border-radius-sm: $border-radius-sm;
+$input-border-radius-lg: $border-radius-lg;
+
+$input-focus-bg: $input-bg;
+$input-focus-border-color: $app-tertiary-main;
+$input-focus-color: $input-color;
+$input-focus-width: 0;
+$input-focus-box-shadow: none;
+
+$input-placeholder-color: $app-tertiary-main;
+
+$form-check-input-bg: $white;
+$form-check-input-width: 1.5em;
+$form-check-input-border: 2px solid $app-forms-check-color;
+$form-check-input-focus-border: none;
+$form-check-input-focus-box-shadow: none;
+
+$form-check-input-checked-color: $app-forms-check-color;
+$form-check-input-checked-bg-color: $white;
+$form-check-input-checked-border-color: none;
+$form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>");
+$form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$form-check-input-checked-color}'/></svg>");
+
+$form-check-input-indeterminate-color: $app-forms-check-color;
+$form-check-input-indeterminate-bg-color: $white;
+$form-check-input-indeterminate-border-color: none;
+$form-check-input-indeterminate-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-indeterminate-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>");
+
+$form-check-input-disabled-opacity: 0.5;
+$form-check-label-disabled-opacity: $form-check-input-disabled-opacity;
+
+// Cards
+$card-spacer-y: $spacer * 1.5;
+$card-spacer-x: $spacer * 1.5;
+$card-title-spacer-y: $spacer;
+$card-border-width: 0;
+$card-border-color: null;
+$card-border-radius: $border-radius;
+$card-box-shadow: $box-shadow;
+$card-color: $app-text-gray1;
+$card-bg: $white;
+
+// Tables
+$table-cell-padding-y: 1rem;
+$table-cell-padding-x: 1rem;
+$table-cell-padding-y-sm: 0.5rem;
+$table-cell-padding-x-sm: 0.5rem;
+
+$table-cell-vertical-align: top;
+
+$table-color: $app-text-gray3;
+$table-th-font-weight: 700;
+
+$table-striped-bg: $app-forms-background;
+
+$table-striped-order: even;
+$table-striped-columns-order: odd;
+
+$sortable-image-inactive: url("data:image/svg+xml,<svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M0 6L5.99943 12L12 6L11.2075 5.31194L6.54526 9.99984V0H5.4536V9.99984L0.791454 5.31194L0 6Z'  fill='#{$app-sortable-inactive-color}'/></svg>");
+$sortable-image-active: url("data:image/svg+xml,<svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M0 6L5.99943 12L12 6L11.2075 5.31194L6.54526 9.99984V0H5.4536V9.99984L0.791454 5.31194L0 6Z'  fill='#{$app-sortable-active-color}'/></svg>");
+
+// Pagination
+$pagination-padding-y: 0.5rem;
+$pagination-padding-x: 1rem;
+$pagination-padding-y-sm: 0.25rem;
+$pagination-padding-x-sm: 0.5rem;
+$pagination-padding-y-lg: 1rem;
+$pagination-padding-x-lg: 1.5rem;
+
+$pagination-font-size: $font-size-base;
+
+$pagination-color: $app-text-gray3;
+$pagination-border-color: transparent;
+
+$pagination-focus-color: $app-text-gray3;
+$pagination-focus-bg: $app-forms-background;
+$pagination-focus-box-shadow: none;
+$pagination-focus-outline: 0;
+
+$pagination-hover-color: $app-text-gray3;
+$pagination-hover-bg: $app-forms-background;
+$pagination-hover-border-color: transparent;
+
+$pagination-active-color: $white;
+$pagination-active-bg: $app-tertiary-main;
+$pagination-active-border-color: $app-tertiary-main;
+
+$pagination-disabled-color: $app-tertiary-main;
+$pagination-disabled-border-color: transparent;
+
+// Alerts
+$alert-text-danger: $app-alert-text-danger;
+$alert-bg-danger: $app-alert-bg-danger;
+$alert-border-danger: $app-alert-border-danger;
+
+$alert-text-warning: $app-alert-text-warning;
+$alert-bg-warning: $app-alert-bg-warning;
+$alert-border-warning: $app-alert-border-warning;
+
+$alert-text-success: $app-alert-text-success;
+$alert-bg-success: $app-alert-bg-success;
+$alert-border-success: $app-alert-border-success;
+
+$alert-text-info: $app-alert-text-info;
+$alert-bg-info: $app-alert-bg-info;
+$alert-border-info: $app-alert-border-info;
+
+// Close btn
+$btn-close-width: 0.75rem;
+$btn-close-height: $btn-close-width;
+$btn-close-focus-shadow: none;
+
+//Breadcrumb
+$breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='14' fill='one' viewBox='0 0 9 16'><path fill='#48545B' d='M8.706 7.294c.39.39.39 1.025 0 1.415l-6 6a1.002 1.002 0 0 1-1.416-1.415L6.584 8l-5.29-5.294a1.002 1.002 0 0 1 1.415-1.415l6 6-.003.003Z'/></svg>");
