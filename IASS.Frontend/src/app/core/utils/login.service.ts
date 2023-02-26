@@ -4,7 +4,6 @@ import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginDto } from 'src/app/api/models';
 import { AuthService } from 'src/app/api/services';
-// import { AlertService } from 'src/app/core/alert/alert.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +14,7 @@ export class LoginService {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    // private alertService: AlertService
+    private router: Router
   ) {}
 
   public login(user: LoginDto): void {
@@ -30,7 +28,6 @@ export class LoginService {
           this.isLoginSubject.next(true);
         },
         (error) => {
-          //this.alertService.error(error.error);
           this.isLoginSubject.next(false);
         }
       );

@@ -1,1 +1,8 @@
-<p>user-profile works!</p>
+<div class="container my-4">
+  <ng-container>
+    <h2 class="text-uppercase">Your profile</h2>
+  </ng-container>
+  <div class="row row-cols-1 g-4 mb-4">
+    <app-info-card [profileId]="userId"></app-info-card>
+  </div>
+</div>
