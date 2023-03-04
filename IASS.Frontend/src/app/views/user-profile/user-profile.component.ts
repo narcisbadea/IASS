@@ -4,8 +4,7 @@ import { LoginService } from 'src/app/core/utils/login.service';
 
 @Component({
   selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  templateUrl: './user-profile.component.html'
 })
 export class UserProfileComponent implements OnInit {
   @Input() userId: string = '';
@@ -19,15 +18,16 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginService.getCurrentUserId().subscribe((userId) => {
-      if (this.router.url === '/profile') {
-        this.isOwnProfile = true;
-        this.userId = userId;
-      } else {
-        this.isOwnProfile = false;
-        this.userId = this.route.snapshot.paramMap.get('id')!;
-      }
-      console.log(this.userId);
+    this.loginService.getCurrentUserId().subscribe(( userIdV: string) => {
+      // console.log(userIdV);
+      // if (this.router.url === '/profile') {
+      //   this.isOwnProfile = true;
+      //   this.userId = userIdV;
+      // } else {
+      //   this.isOwnProfile = false;
+      //   this.userId = this.route.snapshot.paramMap.get('id')!;
+      // }
+      // console.log(this.userId);
     });
   }
 }

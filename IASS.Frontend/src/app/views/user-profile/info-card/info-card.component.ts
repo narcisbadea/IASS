@@ -3,8 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 @Component({
   selector: 'app-info-card',
-  templateUrl: './info-card.component.html',
-  styleUrls: ['./info-card.component.scss'],
+  templateUrl: './info-card.component.html'
 })
 export class InfoCardComponent implements OnInit, OnDestroy {
   @Input() profileId: string ='';
