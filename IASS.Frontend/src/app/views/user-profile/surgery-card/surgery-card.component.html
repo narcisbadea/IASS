@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-uppercase">surgery</h3>
+
+    <p class="card-text fw-bold">
+      The "Surgical History" section records past surgeries or medical procedures. This info helps healthcare providers understand your medical history and provide appropriate treatment. Record the surgery type, date, and any relevant details. This helps improve your healthcare and outcomes.
+    </p>
+    <div class="d-flex flex-column align-items-center">
+      <span class="text-muted" *ngIf="!loading">Your languages are empty, please add...</span>
+      <button type="button" class="btn btn-link px-3 py-1" (click)="openLanguagesModal()">
+        <i class="fs-4 me-2 bi bi-pencil-square"></i>Add surgery
+      </button>
+    </div>
+    <ng-container *ngIf="!!completedSurgery?.length">
+      <div class="d-flex flex-column align-items-center">
+        <button type="button" class="btn btn-primary me-3 mb-2" (click)="openLanguagesModal()">
+          Add Language
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

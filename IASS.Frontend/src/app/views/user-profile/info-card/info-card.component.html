@@ -6,10 +6,10 @@
         <div class="spinner-border spinner-button text-primary" role="status"></div>
       </div>
     </ng-container>
-    <ng-container *ngIf="!!briefInfo; else default">
-      <span style="white-space: break-spaces">{{ briefInfo }}</span>
+    <ng-container *ngIf="!!medicalHistory; else default">
+      <span style="white-space: break-spaces">{{ medicalHistory }}</span>
       <div class="d-flex flex-row justify-content-end">
-        <button type="button" class="btn btn-link px-3 py-1" (click)="briefInfoModal()">
+        <button type="button" class="btn btn-link px-3 py-1" (click)="medicalHistoryModal()">
           <i class="fs-4 me-2 bi bi-pencil-square"></i>Edit
         </button>
       </div>
@@ -25,7 +25,7 @@
         </p>
         <div class="d-flex flex-column align-items-center" *ngIf="!loading">
           <span class="text-muted">Please add some info about yourself...</span>
-          <button type="button" class="btn btn-link px-3 py-1" (click)="briefInfoModal()">
+          <button type="button" class="btn btn-link px-3 py-1" (click)="medicalHistoryModal()">
             <i class="fs-4 me-2 bi bi-pencil-square"></i>Edit
           </button>
         </div>
