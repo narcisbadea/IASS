@@ -19,15 +19,13 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.getCurrentUserId().subscribe(( userIdV: string) => {
-      // console.log(userIdV);
-      // if (this.router.url === '/profile') {
-      //   this.isOwnProfile = true;
-      //   this.userId = userIdV;
-      // } else {
-      //   this.isOwnProfile = false;
-      //   this.userId = this.route.snapshot.paramMap.get('id')!;
-      // }
-      // console.log(this.userId);
+      if (this.router.url === '/profile') {
+        this.isOwnProfile = true;
+        this.userId = userIdV;
+      } else {
+        this.isOwnProfile = false;
+        this.userId = this.route.snapshot.paramMap.get('id')!;
+      }
     });
   }
 }
