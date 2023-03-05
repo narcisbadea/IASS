@@ -1,0 +1,62 @@
+<div class="card">
+  <form
+    class="card-body form-group"
+    [formGroup]="briefInfoFormGroup"
+    (ngSubmit)="submit()"
+  >
+    <h3 class="card-title text-uppercase">Medical history</h3>
+    <div class="mb-3">
+      <label for="infoFormCOntrol" class="form-label">Info</label>
+      <span class="text-danger">*</span>
+      <textarea
+        class="form-control"
+        id="infoFormCOntrol"
+        rows="6"
+        formControlName="info"
+        maxlength="1000"
+        [ngClass]="{
+          'is-invalid': isSubmitted && briefInfoFormGroup.controls.info.errors
+        }"
+      ></textarea>
+      <label class="d-flex flex-row justify-content-end">{{
+        briefInfoFormGroup.value.info | charactersRemaining: 1000
+      }}</label>
+    </div>
+    <div class="d-flex flex-row justify-content-end position-absolute">
+      <button
+        type="button"
+        class="btn btn-secondary me-3"
+        (click)="delete()"
+        [hidden]="!transferedInfo"
+      >
+        <div class="spinner-container">
+          <span *ngIf="!loadingDelete">Delete</span>
+          <div
+            class="spinner-border spinner-button text-primary"
+            role="status"
+            *ngIf="loadingDelete"
+          ></div>
+        </div>
+      </button>
+    </div>
+    <div class="d-flex flex-row justify-content-end mt-4">
+      <button
+        type="button"
+        class="btn btn-secondary me-3"
+        (click)="closeModal()"
+      >
+        Discard Changes
+      </button>
+      <button type="submit" class="btn btn-primary">
+        <div class="spinner-container">
+          <span *ngIf="!loading">Save</span>
+          <div
+            class="spinner-border spinner-button"
+            role="status"
+            *ngIf="loading"
+          ></div>
+        </div>
+      </button>
+    </div>
+  </form>
+</div>

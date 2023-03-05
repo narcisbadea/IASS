@@ -8,7 +8,7 @@ export class PermissionService {
   featureList: FeaturePermission[] = [
     { feature: Features.Profile, permission: Permission.User },
     { feature: Features.Dashboard, permission: Permission.User },
-    { feature: Features.Employees, permission: Permission.Admin },
+    { feature: Features.Patients, permission: Permission.Admin },
   ];
 
   constructor() {}

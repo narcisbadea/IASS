@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-uppercase">Medical history</h3>
+    <ng-container *ngIf="loading">
+      <div class="spinner-container" align="center">
+        <div class="spinner-border spinner-button text-primary" role="status"></div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!!medicalHistory; else default">
+      <span style="white-space: break-spaces">{{ medicalHistory }}</span>
+      <div class="d-flex flex-row justify-content-end">
+        <button type="button" class="btn btn-link px-3 py-1" (click)="medicalHistoryModal()">
+          <i class="fs-4 me-2 bi bi-pencil-square"></i>Edit
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-template #default>
+      <div *ngIf="!loading">
+        <p class="card-text fw-bold">
+          Write one or two paragraphs summarising the patient's medical history. This section should provide a brief
+          overview of the patient's past and current health status, medical conditions, surgeries, and medications. It
+          should serve as a useful reference for healthcare providers to understand the patient's medical background and
+          make informed decisions about their care.
+        </p>
+        <div class="d-flex flex-column align-items-center" *ngIf="!loading">
+          <span class="text-muted">Please add some info about yourself...</span>
+          <button type="button" class="btn btn-link px-3 py-1" (click)="medicalHistoryModal()">
+            <i class="fs-4 me-2 bi bi-pencil-square"></i>Edit
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

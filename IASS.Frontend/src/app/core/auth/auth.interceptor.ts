@@ -8,14 +8,12 @@ import {
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginService } from '../utils/login.service';
-import { AuthService } from 'src/app/api/services';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
-    private loginService: LoginService,
-    private authService: AuthService
+    private loginService: LoginService
   ) {}
 
   refreshTokenInProgress = false;

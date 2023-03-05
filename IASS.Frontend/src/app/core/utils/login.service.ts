@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginDto } from 'src/app/api/models';
-import { AuthService } from 'src/app/api/services';
-// import { AlertService } from 'src/app/core/alert/alert.service';
+import { AuthService, UserService } from 'src/app/api/services';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +15,10 @@ export class LoginService {
   constructor(
     private authService: AuthService,
     private router: Router,
-    // private alertService: AlertService
+    private userService: UserService
   ) {}
 
   public login(user: LoginDto): void {
-    console.log(user);
-
     this.authService
       .authLoginPost$Json({ body: user })
       .subscribe(
@@ -30,7 +27,6 @@ export class LoginService {
           this.isLoginSubject.next(true);
         },
         (error) => {
-          //this.alertService.error(error.error);
           this.isLoginSubject.next(false);
         }
       );
@@ -66,10 +62,6 @@ export class LoginService {
     }
   }
 
-  private setRememberMe(value: boolean): void {
-    localStorage.setItem('rememberMe', String(value));
-  }
-
   public getUserRole(): string[] {
     var token = this.getToken();
     if (token != null) {
@@ -89,8 +81,8 @@ export class LoginService {
     return [''];
   }
 
-  public getCurrentUserId(): Observable<string> {
-    return this.authService.authLoggedUsernameGet$Json();
+  getCurrentUserId(): Observable<string> {
+    return this.userService.apiUserLoggedUseridGet$Json();
   }
 
   getDecodedAccessToken(token: string): any {
