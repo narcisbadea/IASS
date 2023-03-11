@@ -54,7 +54,24 @@ export class MedicalHistoryModalComponent implements OnInit, OnDestroy {
     this.isSubmitted = true;
     this.loading = true;
     if (this.briefInfoFormGroup.valid) {
-
+      this.userService.apiUserMedicalHistoryPost$Json({
+          medicalHistory: this.briefInfoFormGroup.value.info,
+        })
+        .pipe(debounceTime(300), takeUntil(this.destroy$))
+        .subscribe({
+          next: () => {
+            this.activeModal.close();
+            if (!!this.transferedInfo) {
+              this.alertService.success('Medical history updated successfully!');
+            } else {
+              this.alertService.success('Medical history added successfully!');
+            }
+            this.loading = false;
+          },
+          error: (error) => {
+            this.alertService.error(error);
+          },
+        });
     } else {
       this.loading = false;
     }
@@ -62,5 +79,18 @@ export class MedicalHistoryModalComponent implements OnInit, OnDestroy {
 
   delete() {
     this.loadingDelete = true;
+    this.userService
+      .apiUserMedicalHistoryDelete$Json()
+      .pipe(debounceTime(300), takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.activeModal.close();
+          this.loadingDelete = false;
+          this.alertService.success('Briefinfo deleted successfully!');
+        },
+        error: (error) => {
+          this.alertService.error(error);
+        },
+      });
   }
 }

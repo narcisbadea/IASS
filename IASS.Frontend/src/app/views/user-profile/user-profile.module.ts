@@ -11,6 +11,10 @@ import { UserProfileComponent } from './user-profile.component';
 import { SurgeryCardComponent } from './surgery-card/surgery-card.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SurgeryModalComponent } from './surgery-card/surgery-modal/surgery-modal.component';
+import { AllergiesCardComponent } from './allergies-card/allergies-card.component';
+import { AllergiesModalComponent } from './allergies-card/allergies-modal/allergies-modal.component';
+import { CardModule } from 'src/app/shared/card/card.module';
+import { ButtonModule } from 'src/app/shared/button/button.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { SurgeryModalComponent } from './surgery-card/surgery-modal/surgery-moda
     InfoCardComponent,
     MedicalHistoryModalComponent,
     SurgeryCardComponent,
-    SurgeryModalComponent
+    SurgeryModalComponent,
+    AllergiesCardComponent,
+    AllergiesModalComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +35,9 @@ import { SurgeryModalComponent } from './surgery-card/surgery-modal/surgery-moda
     LayoutModule,
     ReactiveFormsModule,
     SharedModule,
-    NgSelectModule
+    NgSelectModule,
+    CardModule,
+    ButtonModule
   ],
   exports: [UserProfileComponent],
 })

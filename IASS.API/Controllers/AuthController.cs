@@ -21,7 +21,7 @@ public class AuthController : ControllerBase
 
 
     [HttpPost("register")]
-    public async Task<IActionResult> SignUp(RegisterDTO auth)
+    public async Task<ActionResult<string>> SignUp([FromForm] RegisterUserDto auth)
     {
         var result = await _authService.SignUp(auth);
         return Ok(result);

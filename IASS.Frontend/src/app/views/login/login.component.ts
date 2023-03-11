@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginUser: LoginDto = {};
 
   constructor(private router: Router, private loginService: LoginService) {}
-  
+
   ngOnDestroy(): void {
     this.untilDestroy$.next();
     this.untilDestroy$.complete();
@@ -38,5 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.login(this.loginUser);
   }
 
-  onRegister() {}
+  onRegister() {
+    this.router.navigateByUrl('/login/register');
+  }
 }

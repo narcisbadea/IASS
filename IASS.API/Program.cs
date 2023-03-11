@@ -18,10 +18,14 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-
+builder.Services.AddScoped<IAllergyService, AllergyService>();
+builder.Services.AddScoped<IAllergyCategoryRepository, AllergyCategoryRepository>();
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAllergyRepository, AllergyRepository>();
+
+
 
 builder.Services.AddDbContext<AppDbContext>();
 

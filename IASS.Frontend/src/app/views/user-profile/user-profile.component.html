@@ -4,9 +4,11 @@
         <div class="d-flex align-items-center">
           <h2 class="text-uppercase">Your profile</h2>
         </div>
+        <app-download-button [userId]="userId"></app-download-button>
     </div>
     <div class="row row-cols-1 g-4 mb-4">
       <app-info-card [profileId]="userId"></app-info-card>
+      <app-allergies-card [profileId]="userId"></app-allergies-card>
       <app-surgery-card [profileId]="userId"></app-surgery-card>
     </div>
   </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime, Subject, switchMap, takeUntil } from 'rxjs';
+import { UserService } from 'src/app/api/services';
+import { AlertService } from 'src/app/core/alert/alert.service';
 import { MedicalHistoryModalComponent } from './medical-history-modal/medical-history-modal.component';
 @Component({
   selector: 'app-info-card',
@@ -16,30 +18,30 @@ export class InfoCardComponent implements OnInit, OnDestroy {
   destroy$: Subject<void> = new Subject<void>();
 
   constructor(
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    private alertService: AlertService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
-    // this.refreshData$
-    //   .pipe(
-    //     debounceTime(300),
-    //     switchMap((_) =>
-    //       this.userService.apiUserGetmedicalHistoryUserIdGet$Json({
-    //         userId: this.profileId,
-    //       })
-    //     ),
-    //     takeUntil(this.destroy$)
-    //   )
-    //   .subscribe({
-    //     next: (result: string) => {
-    //       this.medicalHistory = result;
-    //       this.loading = false;
-    //     },
-    //     error: (error) => {
-    //       this.alertService.error(error);
-    //     },
-    //   });
+    this.refreshData$
+      .pipe(
+        debounceTime(300),
+        switchMap((_) =>
+          this.userService.apiUserMedicalHistoryGet$Json()
+        ),
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
+        next: (result: string) => {
+          this.medicalHistory = result;
+          this.loading = false;
+        },
+        error: (error) => {
+          this.alertService.error(error);
+        },
+      });
 
     this.loading = false;
     this.refreshData$.next();
@@ -65,7 +67,7 @@ export class InfoCardComponent implements OnInit, OnDestroy {
         this.refreshData$.next();
       })
       .catch((error) => {
-        //this.alertService.error(error);
+        this.alertService.error(error);
       });
   }
 }

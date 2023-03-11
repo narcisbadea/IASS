@@ -33,16 +33,15 @@ export class AuthInterceptor implements HttpInterceptor {
       },
       (error) => {
         if (error.status == 401) {
-          this.router.navigateByUrl('/login');
           if (this.checkIfTokenExpired(error)) {
             this.onUnauthorized();
           }
-
           if (error.url.indexOf('auth') >= 0) {
             this.onUnauthorized();
             obs.error(error);
             return;
           }
+          this.onUnauthorized();
         } else if (error.status == 403) {
           this.onForbidden();
           obs.error(error);
@@ -71,6 +70,8 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       });
     }
+    console.log(request);
+
     return request;
   }
 

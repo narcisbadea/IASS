@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { AllergyService } from './services/allergy.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 
@@ -15,6 +16,7 @@ import { UserService } from './services/user.service';
   exports: [],
   declarations: [],
   providers: [
+    AllergyService,
     AuthService,
     UserService,
     ApiConfiguration

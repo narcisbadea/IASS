@@ -10,7 +10,8 @@ namespace IASS.BLL.Services.Interfaces
         Task<JwtSecurityToken> GenerateToken(LoginDTO userLogin, bool rememberMe);
         Task<User> GetLoggedUser();
         Task<string> GetLoggedUserId();
-        string GetLoggedUserName();
-        Task<string> SignUp(RegisterDTO signup);
+        Task<string> GetLoggedUserName();
+        string GetLoggedUserNameFromToken();
+        Task<string> SignUp(RegisterUserDto signup);
     }
 }

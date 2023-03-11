@@ -145,7 +145,7 @@ $card-border-color: null;
 $card-border-radius: $border-radius;
 $card-box-shadow: $box-shadow;
 $card-color: $app-text-gray1;
-$card-bg: $white;
+$card-bg: $app-card-bg;
 
 // Tables
 $table-cell-padding-y: 1rem;
@@ -219,3 +219,10 @@ $btn-close-focus-shadow: none;
 
 //Breadcrumb
 $breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='14' fill='one' viewBox='0 0 9 16'><path fill='#48545B' d='M8.706 7.294c.39.39.39 1.025 0 1.415l-6 6a1.002 1.002 0 0 1-1.416-1.415L6.584 8l-5.29-5.294a1.002 1.002 0 0 1 1.415-1.415l6 6-.003.003Z'/></svg>");
+
+
+//Navbar
+$navbar-bg:$app-navbar-bg;
+$navbar-link:$app-navbar-link;
+$navbar-brand:$app-navbar-brand;
+$navbar-link-unselected:$app-navbar-link-unselected;

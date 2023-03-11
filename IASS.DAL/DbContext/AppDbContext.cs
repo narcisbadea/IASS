@@ -14,6 +14,9 @@ public class AppDbContext: IdentityDbContext<User, Role, string>
 {
     private readonly IConfiguration _configuration;
 
+    public DbSet<AllergyCategory> AllergyCategories { get; set; }
+    public DbSet<Allergy> Allergies { get; set; }
+
     public AppDbContext(IConfiguration configuration) : base()
     {
         _configuration = configuration;

@@ -23,6 +23,7 @@ export class LoginService {
       .authLoginPost$Json({ body: user })
       .subscribe(
         (res) => {
+          console.log(res);
           this.setToken(res);
           this.isLoginSubject.next(true);
         },

@@ -30,7 +30,7 @@ public class AuthService : IAuthService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<string> SignUp(RegisterDTO signup)
+    public async Task<string> SignUp(RegisterUserDto signup)
     {
         var user = _mapper.Map<User>(signup);
         user.UserName = user.Email;
@@ -88,7 +88,7 @@ public class AuthService : IAuthService
 
     public async Task<User> GetLoggedUser()
     {
-        var result = await _userRepository.GetUserByName(GetLoggedUserName());
+        var result = await _userRepository.GetUserByName(GetLoggedUserNameFromToken());
         return result;
     }
 
@@ -97,7 +97,7 @@ public class AuthService : IAuthService
         var user = await GetLoggedUser();
         return user.Id;
     }
-    public string GetLoggedUserName()
+    public string GetLoggedUserNameFromToken()
     {
         var result = string.Empty;
         if (_httpContextAccessor.HttpContext != null)
@@ -105,6 +105,12 @@ public class AuthService : IAuthService
             result = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
         }
         return result;
+    }
+
+    public async Task<string> GetLoggedUserName()
+    {
+        var result = await _userRepository.GetUserByName(GetLoggedUserNameFromToken());
+        return result.FirstName + " " + result.LastName;
     }
 
 }

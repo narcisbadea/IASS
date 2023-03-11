@@ -8,6 +8,11 @@ import { LayoutModule } from './layout/layout.module';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PatientsModule } from './views/patients/patients.module';
+import { ApiModule } from './api/api.module';
+import { environment } from 'src/environments/environment';
+import { RegisterComponent } from './views/login/register/register.component';
+import { CardModule } from './shared/card/card.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     LayoutModule,
     HttpClientModule,
+    PatientsModule,
+    ApiModule.forRoot({ rootUrl: environment.apiUrl }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

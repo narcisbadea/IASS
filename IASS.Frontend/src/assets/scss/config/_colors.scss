@@ -2,25 +2,39 @@
 $white: #fff;
 $black: #000;
 
-$app-bg-color: #f6f8f8;
-$app-primary-main: #de411b;
-$app-primary-darker: #cb3f1e;
-$app-primary-lighter: #fdf5f3;
-$app-bg-shadow: #ccc;
-$app-border-color: #cecece;
+$app-navbar-bg:#2B2B63;
+$app-navbar-link:#D1D1F0;
+$app-navbar-brand:#de411b;
+$app-navbar-link-unselected:#9999b2;
+
+
+$app-bg-color: #ffff;
+$app-card-bg: #F1F1FF;
+$app-primary-main: #1F75CB;
+$app-primary-darker: #B1B2FF;
+$app-primary-lighter: #a6a7eb;
+$app-bg-shadow: #484974;
+$app-border-color: #B1B2FF;
 
 //app secondary
 $app-secondary-main: #285078;
 $app-secondary-darker: #264664;
 
 //app tertiary
-$app-tertiary-main: #9bb4be;
-$app-tertiary-darker: #8fa6b0;
+$app-tertiary-main: #2B2B63;
+$app-tertiary-darker: #6466d3;
 
 //app text
 $app-text-gray1: #48545b;
 $app-text-gray2: #4a4a4a;
 $app-text-gray3: #222;
+
+//app forms
+$app-forms-background: #d9daf7;
+$app-forms-check-color: #d2dde2;
+
+$app-sortable-inactive-color: #b6d3e0;
+$app-sortable-active-color: $app-text-gray3;
 
 //app alerts
 $app-alert-text-danger: #d72d2f;
@@ -38,10 +52,3 @@ $app-alert-border-success: #317159;
 $app-alert-text-warning: #996a13;
 $app-alert-bg-warning: #fddf87;
 $app-alert-border-warning: #996a13;
-
-//app forms
-$app-forms-background: #f0f3f3;
-$app-forms-check-color: #d2dde2;
-
-$app-sortable-inactive-color: #b6d3e0;
-$app-sortable-active-color: $app-text-gray3;
