@@ -19,14 +19,6 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-        data: { feature: Features.Dashboard },
-      },
-      {
         path: 'patients',
         loadChildren: () =>
           import('./views/patients/patients.module').then(

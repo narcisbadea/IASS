@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb px-3">
+    <li class="breadcrumb-item fs-sm">
+      <a class="text-secondary" routerLink="/patients">Patients List</a>
+    </li>
+    <li class="breadcrumb-item active fs-sm">
+      {{ profile.name }}
+    </li>
+  </ol>
+</nav>
+
+<ng-container *ngIf="profile">
+  <app-user-profile [profile]="profile"></app-user-profile>
+</ng-container>

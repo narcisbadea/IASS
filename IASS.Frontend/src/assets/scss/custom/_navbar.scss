@@ -1,25 +1,24 @@
+.navbar-username{
+  color: $app-navbar-link;
+}
+
 .navbar-brand {
-  color: $app-text-gray1;
-  font-size: 1.5rem;
+  color: $navbar-brand;
+  font-size: 2rem;
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
 }
-
 .navbar {
+  background-color: $navbar-bg;
   &.navbar-custom {
-    padding: 0;
-
-    &.topbar {
-      padding: 0.5rem 1rem;
-    }
-
+    padding: 0.75rem;
     .navbar-nav {
-      display: flex;
       flex-direction: row;
+      padding-right: 4rem;
 
       .nav-link {
         padding: 0.75rem 1rem;
-        color: $app-text-gray1;
+        color: $navbar-link-unselected;
         font-size: $font-size-base;
         font-family: $headings-font-family;
         font-weight: $headings-font-weight;
@@ -28,11 +27,11 @@
         &:active,
         &:focus,
         &:hover {
-          color: $app-primary-main;
+          color: $app-navbar-link;
         }
 
         &.active {
-          color: $app-primary-main;
+          color: $app-navbar-link;
           position: relative;
 
           &:before {
@@ -43,7 +42,7 @@
             left: 0;
             right: 0;
             height: 0.25rem;
-            background: $app-primary-main;
+            background: $app-navbar-link;
           }
         }
       }

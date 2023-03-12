@@ -1,13 +1,38 @@
 <ng-container *ngIf="userId$ | async as userId">
   <div class="container my-4">
     <div class="d-flex justify-content-between">
+      <ng-container *ngIf="isOwnProfile; else profileDetail">
         <div class="d-flex align-items-center">
           <h2 class="text-uppercase">Your profile</h2>
         </div>
+      </ng-container>
+
+      <ng-template #profileDetail>
+        <div *ngIf="profile" class="d-flex justify-content-between">
+          <div class="d-flex mb-3">
+            <app-avatar
+              [name]="profile.name"
+              [image]="imageURL"
+              ltr
+              large
+            ></app-avatar>
+          </div>
+          <div class="row row-cols-2 col-md-6">
+            <span class="fw-bold">Contact:</span>
+            <span>{{ profile.contact }}</span>
+
+            <span class="fw-bold">Address:</span>
+            <span>{{ profile.address }}</span>
+
+          </div>
+        </div>
+      </ng-template>
+        <app-download-button [userId]="userId"></app-download-button>
     </div>
     <div class="row row-cols-1 g-4 mb-4">
       <app-info-card [profileId]="userId"></app-info-card>
-      <app-surgery-card [profileId]="userId"></app-surgery-card>
+      <app-allergies-card [profileId]="userId"></app-allergies-card>
+      <app-x-ray-card [profileId]="userId"></app-x-ray-card>
     </div>
   </div>
 </ng-container>

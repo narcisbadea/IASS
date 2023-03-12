@@ -1,0 +1,41 @@
+<div class="card">
+  <form class="card-body" [formGroup]="xRayForm" (ngSubmit)="onSubmit()">
+    <h3 class="card-title text-uppercase">Add X-Ray</h3>
+    <div class="row row-cols-1 g-3">
+      <div class="mb-3">
+        <label for="xRayInput" class="form-label">X-Ray</label>
+        <label for="xRayInput" class="form-label text-danger">*</label>
+        <input class="form-control" type="file" (change)="onPhotoChange($event)" required accept="image/*" [ngClass]="{
+            'is-invalid': submitted && xRayForm.controls.Photo.errors
+          }" />
+      </div>
+      <div class="mb-3">
+        <label for="xRayTypeArea" class="form-label">Type</label>
+        <label for="xRayTypeArea" class="form-label text-danger">*</label>
+        <ng-select [items]="xRayTypes" bindLabel="name" bindValue="id" formControlName="TypeId" [multiple]="false"
+          placeholder='Select a category' [ngClass]="{
+          'is-invalid': submitted && xRayForm.controls.TypeId.errors
+        }">
+        </ng-select>
+      </div>
+      <div class="mb-3">
+        <label for="descriptionTextArea" class="form-label">Description (Optional)</label>
+        <textarea formControlName="Description" class="form-control" id="descriptionTextArea" rows="3"
+          placeholder="Describe your X-Ray..."></textarea>
+      </div>
+    </div>
+    <div class="row row-cols-1">
+      <div class="d-flex flex-row justify-content-end mt-4">
+        <button type="button" class="btn btn-secondary me-3" (click)="closeModal()">
+          Discard Changes
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <div class="spinner-container">
+            <span *ngIf="!loading">Save</span>
+            <div class="spinner-border spinner-button" role="status" *ngIf="loading"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

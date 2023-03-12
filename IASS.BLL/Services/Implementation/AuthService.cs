@@ -30,7 +30,38 @@ public class AuthService : IAuthService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<string> SignUp(RegisterDTO signup)
+    public async Task<string> GetDoctorCode()
+    {
+        var user = await GetLoggedUserId();
+        return await _userRepository.GetDoctorCode(user);
+    }
+
+    public async Task<string> SignUpPatient(RegisterPatientUserDto signup)
+    {
+        var user = _mapper.Map<User>(signup);
+        user.UserName = user.Email;
+        var doctor = await _userRepository.FindDoctorAfterCode(signup.DoctorCode);
+        if (doctor != null)
+        {
+            var result = await _userManager.CreateAsync(user, signup.Password);
+            if (!result.Succeeded)
+            {
+                return "Error";
+            }
+            var savedUser = await _userManager.FindByEmailAsync(signup.Email);
+            if (savedUser == null)
+            {
+                return "Error";
+            }
+            await _userRepository.AddPatientToDoctor(doctor.User, savedUser);
+            await _userManager.AddToRoleAsync(savedUser, "User");  
+            return "User added!";
+        }
+        return "Errror, Doctor not found!";
+
+    }
+
+    public async Task<string> SignUpDoctor(RegisterDoctorUserDto signup)
     {
         var user = _mapper.Map<User>(signup);
         user.UserName = user.Email;
@@ -40,7 +71,8 @@ public class AuthService : IAuthService
             return "Error";
         }
         var savedUser = await _userManager.FindByEmailAsync(signup.Email);
-        await _userManager.AddToRoleAsync(savedUser, "User");
+        await _userRepository.CreateDoctor(savedUser);
+        await _userManager.AddToRoleAsync(savedUser, "Admin");
         if (savedUser == null)
         {
             return "Error";
@@ -88,7 +120,7 @@ public class AuthService : IAuthService
 
     public async Task<User> GetLoggedUser()
     {
-        var result = await _userRepository.GetUserByName(GetLoggedUserName());
+        var result = await _userRepository.GetUserByName(GetLoggedUserNameFromToken());
         return result;
     }
 
@@ -97,7 +129,7 @@ public class AuthService : IAuthService
         var user = await GetLoggedUser();
         return user.Id;
     }
-    public string GetLoggedUserName()
+    public string GetLoggedUserNameFromToken()
     {
         var result = string.Empty;
         if (_httpContextAccessor.HttpContext != null)
@@ -105,6 +137,12 @@ public class AuthService : IAuthService
             result = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
         }
         return result;
+    }
+
+    public async Task<string> GetLoggedUserName()
+    {
+        var result = await _userRepository.GetUserByName(GetLoggedUserNameFromToken());
+        return result.FirstName + " " + result.LastName;
     }
 
 }

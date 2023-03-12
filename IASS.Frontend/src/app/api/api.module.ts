@@ -4,8 +4,13 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { AllergyService } from './services/allergy.service';
+import { AllergyCategoryService } from './services/allergy-category.service';
 import { AuthService } from './services/auth.service';
+import { PdfExporterService } from './services/pdf-exporter.service';
 import { UserService } from './services/user.service';
+import { XRayService } from './services/x-ray.service';
+import { XRayTypeService } from './services/x-ray-type.service';
 
 /**
  * Module that provides all services and configuration.
@@ -15,8 +20,13 @@ import { UserService } from './services/user.service';
   exports: [],
   declarations: [],
   providers: [
+    AllergyService,
+    AllergyCategoryService,
     AuthService,
+    PdfExporterService,
     UserService,
+    XRayService,
+    XRayTypeService,
     ApiConfiguration
   ],
 })

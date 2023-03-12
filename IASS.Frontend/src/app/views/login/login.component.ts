@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public loginUser: LoginDto = {};
 
-  constructor(private router: Router, private loginService: LoginService) {}
-  
+  constructor(private router: Router, private loginService: LoginService) { }
+
   ngOnDestroy(): void {
     this.untilDestroy$.next();
     this.untilDestroy$.complete();
@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.untilDestroy$))
       .subscribe((isLoggedIn: boolean) => {
         if (isLoggedIn) {
-          this.router.navigateByUrl('/profile');
+          if (this.loginService.getUserRole()[0] == "User")
+            this.router.navigateByUrl('/profile');
+          if (this.loginService.getUserRole()[0] == "Admin")
+            this.router.navigateByUrl('/patients');
         }
         this.isLoading = '';
       });
@@ -38,5 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginService.login(this.loginUser);
   }
 
-  onRegister() {}
+  onRegisterPatient() {
+    this.router.navigateByUrl('/login/register');
+  }
+  onRegisterDoctor() {
+    this.router.navigateByUrl('/login/register-doctor');
+  }
 }

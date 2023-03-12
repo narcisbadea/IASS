@@ -1,0 +1,30 @@
+<div class="card">
+  <form class="card-body form-group">
+    <div class="d-flex justify-content-center">
+      <h3 class="card-title text-uppercase text-center">X-Ray</h3>
+    </div>
+    <div class="row row-cols-1 g-3">
+      <div class="mb-3 d-flex justify-content-center">
+        <img [src]="imageURL" alt="X-Ray" class="img-fluid" style="max-height: 350px;">
+      </div>
+      <div *ngIf="description.length" class="mb-3">
+        <label for="descriptionTextArea" class="form-label">Description</label>
+        <p>{{description}}</p>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-end mt-4">
+      <button (click)="delete()" class="btn btn-secondary me-3">
+        <div class="spinner-container">
+          <span>Delete</span>
+        </div>
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="closeModal()"
+      >
+        EXIT
+      </button>
+    </div>
+  </form>
+</div>

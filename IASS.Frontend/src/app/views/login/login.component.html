@@ -2,8 +2,8 @@
   <div class="row justify-content-center mt-5">
     <div class="col-md-6 gy-5">
       <div class="card">
-        <div class="card-header text-center">
-          <h4>Sign In</h4>
+        <div class="card-header  text-center">
+          <img src="../../../assets/logos/logo.png" alt="Logo" height="50">
         </div>
         <div class="card-body m-3">
           <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
@@ -17,7 +17,8 @@
             </div>
             <div class="row pt-3 g-3 d-flex justify-content-center">
               <button type="submit" class="btn btn-primary mr-2">Sign In</button>
-              <button type="button" class="btn btn-secondary" (click)="onRegister()">Register</button>
+              <button type="button" class="btn btn-secondary" (click)="onRegisterPatient()">Register patient</button>
+              <button type="button" class="btn btn-secondary" (click)="onRegisterDoctor()">Register doctor</button>
             </div>
           </form>
         </div>

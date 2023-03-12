@@ -1,1 +1,43 @@
-<p>patients works!</p>
+<div class="container-fluid">
+  <h1 class="mb-4">PATIENTS</h1>
+  <h6>Your code: {{doctorCode}}</h6>
+  <div class="card-body mb-4">
+    <div class="d-flex flex-wrap">
+      <div class="me-3 mb-2">
+        <input [(ngModel)]="searchCriteria.name" class="form-control" placeholder="Search patient" />
+      </div>
+      <div class="me-3 mb-2">
+        <ng-select placeholder="Age" [(ngModel)]="searchCriteria.age" [hideSelected]="true" [multiple]="true"
+          [items]="age$ | async">
+        </ng-select>
+      </div>
+
+      <button type="button" class="btn btn-secondary me-3 mb-2" (click)="reset()">
+        Reset All
+      </button>
+      <button type="button" class="btn btn-primary me-3 mb-2" (click)="search()">
+        Search
+      </button>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="patientsData$ | async as patientsData">
+    <div class="card">
+      <app-patients-table [patients]="patientsData.patients" [loading]="patientsData.loading"
+        (profileView)="goToProfile($event)"></app-patients-table>
+      <div class="spinner-border spinner-table text-primary" role="status" *ngIf="patientsData.loading"></div>
+    </div>
+
+    <div class="mt-4">
+      <ngb-pagination class="d-flex justify-content-end" [collectionSize]="patientsData.totalCount"
+        [pageSize]="pageSize" [(page)]="patientsData.currentPage" [maxSize]="5" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true" (pageChange)="onPageChange($event)">
+        <ng-template ngbPaginationFirst><i class="bi bi-chevron-double-left bi-bold"></i></ng-template>
+        <ng-template ngbPaginationLast><i class="bi bi-chevron-double-right bi-bold"></i></ng-template>
+        <ng-template ngbPaginationPrevious><i class="bi bi-chevron-left bi-bold"></i></ng-template>
+        <ng-template ngbPaginationNext><i class="bi bi-chevron-right bi-bold"></i></ng-template>
+      </ngb-pagination>
+    </div>
+  </ng-container>
+</div>

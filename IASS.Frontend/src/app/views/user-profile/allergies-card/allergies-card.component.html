@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-uppercase">ALLERGY</h3>
+    <p class="card-text fw-bold">
+      This section is for the user to complete their allergy information. By providing this information, the user can
+      help ensure that their health and safety are protected in various situations, such as when seeking medical
+      treatment or avoiding potential allergens. It is important for the user to provide accurate and up-to-date
+      information about their allergies in order to receive appropriate care and avoid potentially dangerous situations.
+    </p>
+    <ng-container *ngIf="!!userAllergies?.length; else default">
+      <div class="row row-cols-2 g-3" *ngFor="let item of userAllergies | pairs">
+        <div *ngIf="!!item[0]">
+          <div class="row row-cols-2 g-3">
+            <div class="d-flex flex-row justify-content-end position-absolute">
+              <button type="button" class="btn btn-link px-3 py-1" (click)="allergyModal(item[0])">
+                <i class="fs-4 me-2 bi bi-pencil-square"></i>
+              </button>
+            </div>
+            <div>
+              <div class="d-flex flex-row">
+                <h5 style="margin-right: 10px">{{ item[0].category.name }}</h5>
+                <h6 class="text-muted">{{ item[0].severity }}</h6>
+              </div>
+              <p class="text-muted" style="font-size: 12px">
+                Description: {{ item[0].description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!!item[1]">
+          <div class="row row-cols-2 g-3">
+            <div>
+              <div class="d-flex flex-row">
+                <h5 style="margin-right: 10px">{{ item[1].category.name }}</h5>
+                <h6 class="text-muted">{{ item[1].severity }}</h6>
+              </div>
+              <p class="text-muted" style="font-size: 12px">
+                Description: {{ item[1].description }}
+              </p>
+            </div>
+            <div class="d-flex flex-row justify-content-end position-absolute">
+              <button type="button" class="btn btn-link px-3 py-1" (click)="allergyModal(item[1])">
+                <i class="fs-4 me-2 bi bi-pencil-square"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <div class="spinner-container" align="center">
+        <div class="spinner-border spinner-button text-primary" role="status"></div>
+      </div>
+    </ng-container>
+    <app-card-footer>
+      <ng-container *ngIf="!!userAllergies?.length">
+        <div class="d-flex flex-column align-items-center">
+          <button type="button" app-button [primary]="true" class="btn me-3 mb-2" (click)="allergyModal()">
+            Add Allergy
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #default>
+        <div class="d-flex flex-column align-items-center">
+          <span class="text-muted" *ngIf="!loading">You don't have added allergies.</span>
+          <div class="d-flex flex-column align-items-center">
+            <button type="button" app-button [link]="true" class="btn px-3 py-1" (click)="allergyModal()">
+              <i class="fs-4 me-2 bi bi-pencil-square"></i>Add allergy
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </app-card-footer>
+  </div>
+</div>

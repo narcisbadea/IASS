@@ -1,6 +1,7 @@
 ﻿using IASS.DAL.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,13 @@ namespace IASS.DAL.DbContext;
 public class AppDbContext: IdentityDbContext<User, Role, string>
 {
     private readonly IConfiguration _configuration;
+
+    public DbSet<AllergyCategory> AllergyCategories { get; set; }
+    public DbSet<Allergy> Allergies { get; set; }
+    public DbSet<XRayType> XRayTypes { get; set; }
+    public DbSet<XRay> xRays { get; set; }
+    public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<DoctorPatient> doctorPatients { get; set; }
 
     public AppDbContext(IConfiguration configuration) : base()
     {

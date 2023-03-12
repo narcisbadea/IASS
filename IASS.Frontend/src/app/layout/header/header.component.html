@@ -1,49 +1,16 @@
-<!-- TopBar-->
-
-<nav class="navbar navbar-custom topbar bg-light">
+<nav class="navbar navbar-custom border-top border-bottom">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/"> IASS </a>
-    <div class="ms-auto d-flex align-items-center">
-      <div class="d-flex flex-column align-items-end lh-sm">
-        <span class="fw-bold">Narcis Badea</span>
+    <div class="me-auto">
+      <a class="navbar-brand" routerLink="/">
+        <img src="../../../assets/logos/logo.png" alt="Logo" height="35">
+      </a>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="me-3 navbar-username">
+        <span class="fw-bold">{{userName}}</span>
       </div>
-      <img
-        src="https://play-lh.googleusercontent.com/hNPPO1n7jov3JpkbE9xmxKadMJCxap8R80dSbeWy8DstdG4KmnSrVve3vlMXXjvpVM4"
-        class="rounded-circle ms-3"
-        height="46"
-        width="46"
-        alt="Photo Profile"
-        loading="lazy"
-        (click)="logout()"
-      />
+      <img [src]="imageURL"
+        class="rounded-circle" height="46" width="46" alt="Photo Profile" loading="lazy" (click)="logout()" />
     </div>
   </div>
 </nav>
-<!-- end TopBar -->
-
-<!-- NavBar -->
-<nav class="navbar navbar-custom bg-white border-top border-bottom">
-  <div class="container-fluid">
-    <div class="navbar-nav">
-      <a
-        class="nav-link"
-        routerLink="/dashboard"
-        routerLinkActive="active"
-        >Dashboard</a
-      >
-      <a
-        class="nav-link"
-        routerLink="/patients"
-        routerLinkActive="active"
-        >Patients</a
-      >
-      <a
-        class="nav-link"
-        routerLink="/profile"
-        routerLinkActive="active"
-        >Profile</a
-      >
-    </div>
-  </div>
-</nav>
-<!-- NavBar -->

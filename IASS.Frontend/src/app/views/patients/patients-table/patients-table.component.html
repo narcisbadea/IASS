@@ -1,0 +1,38 @@
+<div class="overflow-hidden rounded">
+  <table
+    tableSort
+    [column]="sortColumn"
+    [direction]="sortDirection"
+    (sortChange)="onSort($event)"
+    class="table table-borderless table-striped table-sticky-header"
+  >
+    <thead class="text-uppercase">
+      <tr>
+        <th>Person name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>contact</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>
+          <button
+            type="button"
+            class="text-start btn btn-link p-0"
+            (click)="onSelect(patient)"
+          >
+            {{ patient.userName }}
+          </button>
+        </td>
+        <td>{{ patient.age }}</td>
+        <td>{{ patient.address }}</td>
+        <td>{{ patient.contact }}</td>
+      </tr>
+      <tr *ngIf="!patients.length && !loading">
+        <td class="text-muted" colspan="100%">No entries to show</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

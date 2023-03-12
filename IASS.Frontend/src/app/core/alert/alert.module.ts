@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { AlertComponent } from './alert.component';
 import { TimeoutDirective } from './timeout.directive';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { AlertsContainerComponent } from './alerts-container.component';
 
 @NgModule({
-  declarations: [AlertComponent, TimeoutDirective],
+  declarations: [AlertsContainerComponent, AlertComponent, TimeoutDirective],
   imports: [CommonModule, OverlayModule],
-  exports: [AlertComponent],
 })
 export class AlertModule {}
