@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime, Subject, switchMap, takeUntil } from 'rxjs';
 import { AllergyForUserDto } from 'src/app/api/models';
@@ -10,7 +10,7 @@ import { AllergiesModalComponent } from './allergies-modal/allergies-modal.compo
   selector: 'app-allergies-card',
   templateUrl: './allergies-card.component.html',
 })
-export class AllergiesCardComponent implements OnInit {
+export class AllergiesCardComponent implements OnInit, OnDestroy {
   @Input() profileId: string;
 
   loading: boolean = true;
@@ -32,7 +32,7 @@ export class AllergiesCardComponent implements OnInit {
       .pipe(
         debounceTime(300),
         switchMap((_) =>
-          this.allergyService.apiAllergyGet$Json()
+          this.allergyService.apiAllergyGet$Json({userId:this.profileId})
         ),
         takeUntil(this.destroy$)
       )
@@ -54,21 +54,22 @@ export class AllergiesCardComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  public allergyModal(userId: string = this.profileId) {
+  public allergyModal(allergy: AllergyForUserDto = null) {
     const modalRef = this.modalService.open(AllergiesModalComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
       keyboard: false,
     });
-    modalRef.componentInstance.userId = userId;
+    modalRef.componentInstance.allergy = allergy;
+    modalRef.componentInstance.profileId = this.profileId;
 
     modalRef.result
       .then(() => {
         this.refreshData$.next();
       })
       .catch((error) => {
-        //this.alertService.error(error);
+        this.alertService.error(error);
       });
   }
 }

@@ -8,10 +8,12 @@ namespace IASS.BLL.Services.Interfaces
     {
         Task<bool> CheckPassword(LoginDTO request);
         Task<JwtSecurityToken> GenerateToken(LoginDTO userLogin, bool rememberMe);
+        Task<string> GetDoctorCode();
         Task<User> GetLoggedUser();
         Task<string> GetLoggedUserId();
         Task<string> GetLoggedUserName();
         string GetLoggedUserNameFromToken();
-        Task<string> SignUp(RegisterUserDto signup);
+        Task<string> SignUpDoctor(RegisterDoctorUserDto signup);
+        Task<string> SignUpPatient(RegisterPatientUserDto signup);
     }
 }

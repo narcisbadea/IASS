@@ -29,7 +29,7 @@ export class InfoCardComponent implements OnInit, OnDestroy {
       .pipe(
         debounceTime(300),
         switchMap((_) =>
-          this.userService.apiUserMedicalHistoryGet$Json()
+          this.userService.apiUserMedicalHistoryGet$Json({userId:this.profileId})
         ),
         takeUntil(this.destroy$)
       )

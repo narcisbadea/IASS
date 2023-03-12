@@ -13,11 +13,11 @@ export class PatientsTableComponent {
   @Input() sortColumn: string;
   @Input() sortDirection: SortDirection;
 
-  @Output() profilePreview: EventEmitter<string> = new EventEmitter();
+  @Output() profileView: EventEmitter<string> = new EventEmitter();
   @Output() sort: EventEmitter<SortEvent> = new EventEmitter();
 
-  onSelect(userId: string) {
-    this.profilePreview.emit(userId);
+  onSelect(user: PatientProfileDto): void {
+    this.profileView.emit(user.id);
   }
 
   onSort(sortEvent: SortEvent) {

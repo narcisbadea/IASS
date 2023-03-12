@@ -7,8 +7,7 @@ import { AlertService } from 'src/app/core/alert/alert.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnDestroy {
   public registerForm: FormGroup;
@@ -24,6 +23,7 @@ export class RegisterComponent implements OnDestroy {
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+      doctorCode: ['', Validators.required],
       photo: [null] // new form control for photo input
     });
   }
@@ -37,23 +37,23 @@ export class RegisterComponent implements OnDestroy {
   }
 
   onSubmit() {
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(this.photoFile);
-    reader.onload = () => {
-      this.registerForm.patchValue({ photo: new Blob([reader.result], { type: this.photoFile.type }) as Blob });
-    };
-
+    if (this.photoFile != null) {
+      const reader = new FileReader();
+      reader.readAsArrayBuffer(this.photoFile);
+      reader.onload = () => {
+        this.registerForm.patchValue({ photo: new Blob([reader.result], { type: this.photoFile.type }) as Blob });
+      };
+    }
     this.register$
       .pipe(
         debounceTime(300),
         switchMap((_) =>
-          this.authService.authRegisterPost$Json({ body: this.registerForm.value })
+          this.authService.authRegisterPatientPost$Json({ body: this.registerForm.value })
         ),
         takeUntil(this.destroy$)
       )
       .subscribe({
         next: (res: string) => {
-          console.log(res);
           this.router.navigateByUrl('/login');
         },
         error: (error) => {

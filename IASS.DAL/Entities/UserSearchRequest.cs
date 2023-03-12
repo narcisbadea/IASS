@@ -9,5 +9,5 @@ namespace IASS.DAL.Entities;
 public class UserSearchRequest : SearchRequest
 {
     public string? Name { get; set; }
-    public List<int> Age { get; set; } = new List<int>();
+    public List<int?> Age { get; set; } = new List<int?>();
 }

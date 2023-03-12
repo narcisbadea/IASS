@@ -1,4 +1,5 @@
 export interface PatientProfileDto {
+  id?: string;
   age?: number;
   contact?: string
   address?: string;

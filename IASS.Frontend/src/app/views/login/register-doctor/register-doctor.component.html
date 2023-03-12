@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>Doctor Registration</h4>
+        </div>
+        <div class="card-body m-3">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="pt-3">
+                  <input type="text" class="form-control" placeholder="Enter your first name"
+                    formControlName="firstName" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="pt-3">
+                  <input type="text" class="form-control" placeholder="Enter your last name" formControlName="lastName"
+                    required>
+                </div>
+              </div>
+            </div>
+            <div class="pt-3">
+              <input type="text" class="form-control" placeholder="Enter your telephone" formControlName="telephone"
+                required>
+            </div>
+            <div class="pt-3">
+              <input type="email" class="form-control" placeholder="Enter your email" formControlName="email" required>
+            </div>
+            <div class="pt-3">
+              <input type="password" class="form-control" placeholder="Enter a password" formControlName="password"
+                required>
+            </div>
+            <div class="pt-3">
+              <input class="form-control" type="file" (change)="onPhotoChange($event)" placeholder="Add a profile photo" accept="image/*" required>
+            </div>
+            <div class="row pt-3 g-3 d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary mr-2">Register</button>
+              <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

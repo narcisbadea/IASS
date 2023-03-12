@@ -5,5 +5,5 @@ export interface AllergyForUserDto {
   category?: AllergyCategory;
   description?: null | string;
   id?: null | string;
-  name?: null | string;
+  severity?: null | string;
 }

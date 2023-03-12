@@ -2,7 +2,8 @@
 /* eslint-disable */
 export interface UserForTableDto {
   address?: null | string;
-  age?: number;
+  age?: null | number;
   contact?: null | string;
+  id?: null | string;
   userName?: null | string;
 }

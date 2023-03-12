@@ -5,6 +5,7 @@ import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { SharedModule } from "src/app/shared/shared.module";
 import { UserProfileModule } from "../user-profile/user-profile.module";
+import { PatientDetailComponent } from "./patient-detail/profile-detail.component";
 import { PatientsRoutingModule } from "./patients-routing.module";
 import { PatientsTableComponent } from "./patients-table/patients-table.component";
 import { PatientsComponent } from "./patients.component";
@@ -12,7 +13,8 @@ import { PatientsComponent } from "./patients.component";
 @NgModule({
   declarations: [
     PatientsComponent,
-    PatientsTableComponent
+    PatientsTableComponent,
+    PatientDetailComponent
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,9 @@ namespace IASS.BLL.Services.Interfaces
 {
     public interface IAllergyService
     {
-        Task<IEnumerable<AllergyForUserDto>> GetAllergyForUser();
-        Task PostAllergyForUser(AllergyToPostDto allergy);
+        Task DeleteAllergyById(string allergyId);
+        Task<IEnumerable<AllergyForUserDto>> GetAllergyForUser(string userId);
+        Task PostAllergyForUser(AllergyToPostDto allergy, string userId);
+        Task PutAllergyForUser(AllergyToPostDto allergy, string userId, string allergyId);
     }
 }

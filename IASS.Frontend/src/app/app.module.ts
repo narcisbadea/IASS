@@ -11,8 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientsModule } from './views/patients/patients.module';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
-import { RegisterComponent } from './views/login/register/register.component';
-import { CardModule } from './shared/card/card.module';
 
 @NgModule({
   declarations: [AppComponent],

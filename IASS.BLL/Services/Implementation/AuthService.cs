@@ -30,7 +30,38 @@ public class AuthService : IAuthService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<string> SignUp(RegisterUserDto signup)
+    public async Task<string> GetDoctorCode()
+    {
+        var user = await GetLoggedUserId();
+        return await _userRepository.GetDoctorCode(user);
+    }
+
+    public async Task<string> SignUpPatient(RegisterPatientUserDto signup)
+    {
+        var user = _mapper.Map<User>(signup);
+        user.UserName = user.Email;
+        var doctor = await _userRepository.FindDoctorAfterCode(signup.DoctorCode);
+        if (doctor != null)
+        {
+            var result = await _userManager.CreateAsync(user, signup.Password);
+            if (!result.Succeeded)
+            {
+                return "Error";
+            }
+            var savedUser = await _userManager.FindByEmailAsync(signup.Email);
+            if (savedUser == null)
+            {
+                return "Error";
+            }
+            await _userRepository.AddPatientToDoctor(doctor.User, savedUser);
+            await _userManager.AddToRoleAsync(savedUser, "User");  
+            return "User added!";
+        }
+        return "Errror, Doctor not found!";
+
+    }
+
+    public async Task<string> SignUpDoctor(RegisterDoctorUserDto signup)
     {
         var user = _mapper.Map<User>(signup);
         user.UserName = user.Email;
@@ -40,7 +71,8 @@ public class AuthService : IAuthService
             return "Error";
         }
         var savedUser = await _userManager.FindByEmailAsync(signup.Email);
-        await _userManager.AddToRoleAsync(savedUser, "User");
+        await _userRepository.CreateDoctor(savedUser);
+        await _userManager.AddToRoleAsync(savedUser, "Admin");
         if (savedUser == null)
         {
             return "Error";

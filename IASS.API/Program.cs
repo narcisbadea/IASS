@@ -10,8 +10,14 @@ using IASS.BLL.Services.Interfaces;
 using IASS.DAL.Repositories.Interfaces;
 using IASS.DAL.Repositories.Implementation;
 using IASS.BLL.Services.Implementation;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
@@ -19,11 +25,18 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAllergyService, AllergyService>();
-builder.Services.AddScoped<IAllergyCategoryRepository, AllergyCategoryRepository>();
+builder.Services.AddScoped<IAllergyCategoryService, AllergyCategoryService>();
+builder.Services.AddScoped<IXRayTypeService, XRayTypeService>();
+builder.Services.AddScoped<IXRayService, XRayService>();
+builder.Services.AddScoped<IPdfExporterService, PdfExporterService>();
+
 
 //Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAllergyRepository, AllergyRepository>();
+builder.Services.AddScoped<IAllergyCategoryRepository, AllergyCategoryRepository>();
+builder.Services.AddScoped<IXRayTypeRepository, XRayTypeRepository>();
+builder.Services.AddScoped<IXRayRepository, XRayRepository>();
 
 
 
@@ -95,6 +108,7 @@ builder.Services.AddCors(options => options.AddPolicy("EnableAll", policy =>
     policy.AllowAnyMethod();
     policy.AllowAnyHeader();
     policy.WithExposedHeaders("www-authenticate");
+    policy.WithExposedHeaders("Content-Disposition");
 }));
 var app = builder.Build();
 

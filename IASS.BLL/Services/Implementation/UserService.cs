@@ -34,25 +34,28 @@ public class UserService : IUserService
 
     public async Task<Page<UserForTableDTO>> SearchUserProfiles(UserSearchRequest userSearchRequest)
     {
-        return await _userRepository.GetFilteredUserProfilesAsync(userSearchRequest);
+        var doctorId = await _authService.GetLoggedUserId();
+        return await _userRepository.GetFilteredUserProfilesAsync(userSearchRequest, doctorId);
 
     }
 
-    public async Task SetUserMedicalHistory(string medicalHistory)
+    public async Task SetUserMedicalHistory(string medicalHistory, string userId)
     {
-        var userId = await _authService.GetLoggedUserId();
         await _userRepository.SetUserMedicalHistory(userId, medicalHistory);
     }
 
-    public async Task<string> GetUserMedicalHistory()
+    public async Task<string> GetUserMedicalHistory(string userId)
     {
-        var userId = await _authService.GetLoggedUserId();
         return await _userRepository.GetUserMedicalHistory(userId);
     }
 
-    public async Task DeleteUserMedicalHistory()
+    public async Task DeleteUserMedicalHistory(string userId)
     {
-        var userId = await _authService.GetLoggedUserId();
         await _userRepository.DeleteUserMedicalHistory(userId);
+    }
+
+    public async Task<PatientProfileDto> GetPatientProfileById(string userId)
+    {
+        return _mapper.Map<PatientProfileDto>(await _userRepository.GetUserById(userId));
     }
 }

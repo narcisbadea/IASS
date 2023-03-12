@@ -1,0 +1,70 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title text-uppercase">X-RAYS</h3>
+    <ng-container *ngIf="!!xrays?.length; else default">
+      <div>
+        <table
+          class="row row-cols-1"
+          *ngFor="let xray of xrays"
+        >
+          <div class="d-flex flex-row justify-content-end position-absolute">
+            <button
+              type="button"
+              class="btn btn-link px-3 py-1"
+              (click)="openxraysViewModal(xray.id, xray.description)"
+            >
+            <i class="fs-4 me-2 bi bi-eye"></i>View
+            </button>
+          </div>
+          <h5 class="text-uppercase m-2">{{ xray.type.name }}</h5>
+          <ng-container *ngIf="!!xray.description; else emptyDescription">
+            <p class="light">Description: {{ xray.description }}</p>
+          </ng-container>
+
+          <hr class="solid" />
+        </table>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyDescription> </ng-template>
+    <ng-container *ngIf="loading">
+      <div class="spinner-container" align="center">
+        <div
+          class="spinner-border spinner-button text-primary"
+          role="status"
+        ></div>
+      </div>
+    </ng-container>
+    <ng-template #default>
+      <p class="card-text fw-bold">
+        In this section, you will be able to upload your X-Rays for our medical professionals to review. Please ensure
+      that the images are of good quality and provide clear visuals of the affected areas. This will help our team make
+      an accurate diagnosis and provide the best possible treatment plan for you. If you have any questions or concerns
+      about uploading your X-Rays, please don't hesitate to contact us for assistance.
+      </p>
+      <div class="d-flex flex-column align-items-center">
+        <span class="text-muted" *ngIf="!loading"
+          >Your X-Rays are empty...</span
+        >
+        <button
+          type="button"
+          class="btn btn-link px-3 py-1"
+          (click)="openxraysModal()"
+        >
+          <i class="fs-4 me-2 bi bi-pencil-square"></i>Add X-RAY
+        </button>
+      </div>
+    </ng-template>
+    <ng-container *ngIf="!!xrays?.length">
+      <div class="d-flex flex-column align-items-center">
+        <button
+          type="button"
+          class="btn btn-primary me-3 mb-2"
+          (click)="openxraysModal()"
+        >
+          Add X-RAY
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

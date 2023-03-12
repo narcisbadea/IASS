@@ -56,6 +56,7 @@ export class MedicalHistoryModalComponent implements OnInit, OnDestroy {
     if (this.briefInfoFormGroup.valid) {
       this.userService.apiUserMedicalHistoryPost$Json({
           medicalHistory: this.briefInfoFormGroup.value.info,
+          userId: this.userId
         })
         .pipe(debounceTime(300), takeUntil(this.destroy$))
         .subscribe({
@@ -80,7 +81,7 @@ export class MedicalHistoryModalComponent implements OnInit, OnDestroy {
   delete() {
     this.loadingDelete = true;
     this.userService
-      .apiUserMedicalHistoryDelete$Json()
+      .apiUserMedicalHistoryDelete$Json({userId:this.userId})
       .pipe(debounceTime(300), takeUntil(this.destroy$))
       .subscribe({
         next: () => {

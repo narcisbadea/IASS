@@ -1,38 +1,21 @@
 <div class="container-fluid">
   <h1 class="mb-4">PATIENTS</h1>
-
+  <h6>Your code: {{doctorCode}}</h6>
   <div class="card-body mb-4">
     <div class="d-flex flex-wrap">
       <div class="me-3 mb-2">
-        <input
-          [(ngModel)]="searchCriteria.name"
-          class="form-control"
-          placeholder="Search patient"
-        />
+        <input [(ngModel)]="searchCriteria.name" class="form-control" placeholder="Search patient" />
       </div>
       <div class="me-3 mb-2">
-        <ng-select
-          placeholder="Age"
-          [(ngModel)]="searchCriteria.age"
-          [hideSelected]="true"
-          [multiple]="true"
-          [items]="age$ | async"
-        >
+        <ng-select placeholder="Age" [(ngModel)]="searchCriteria.age" [hideSelected]="true" [multiple]="true"
+          [items]="age$ | async">
         </ng-select>
       </div>
 
-      <button
-        type="button"
-        class="btn btn-secondary me-3 mb-2"
-        (click)="reset()"
-      >
+      <button type="button" class="btn btn-secondary me-3 mb-2" (click)="reset()">
         Reset All
       </button>
-      <button
-        type="button"
-        class="btn btn-primary me-3 mb-2"
-        (click)="search()"
-      >
+      <button type="button" class="btn btn-primary me-3 mb-2" (click)="search()">
         Search
       </button>
     </div>
@@ -42,7 +25,7 @@
   <ng-container *ngIf="patientsData$ | async as patientsData">
     <div class="card">
       <app-patients-table [patients]="patientsData.patients" [loading]="patientsData.loading"
-        (profilePreview)="showProfilePreview($event)"></app-patients-table>
+        (profileView)="goToProfile($event)"></app-patients-table>
       <div class="spinner-border spinner-table text-primary" role="status" *ngIf="patientsData.loading"></div>
     </div>
 

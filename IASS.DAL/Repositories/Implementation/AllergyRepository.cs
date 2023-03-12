@@ -31,7 +31,23 @@ public class AllergyRepository : IAllergyRepository
 
     public async Task PostAllergyForUser(Allergy allergy)
     {
-        await _appDbContext.AddAsync(allergy);
+        await _appDbContext.Allergies.AddAsync(allergy);
         await _appDbContext.SaveChangesAsync();
+    }
+
+    public async Task PutAllergy(Allergy allergy)
+    {
+        _appDbContext.Allergies.Update(allergy);
+        await _appDbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteAllergyById(string allergyId)
+    {
+        var allergy = await _appDbContext.Allergies.FirstOrDefaultAsync(a => a.Id == allergyId);
+        if (allergy != null)
+        {
+            _appDbContext.Remove(allergy);
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }

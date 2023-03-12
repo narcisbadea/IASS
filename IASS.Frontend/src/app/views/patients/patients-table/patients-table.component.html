@@ -8,10 +8,10 @@
   >
     <thead class="text-uppercase">
       <tr>
-        <th sortable="userName">Person name</th>
-        <th sortable="age">Age</th>
-        <th sortable="address">Address</th>
-        <th sortable="contact">contact</th>
+        <th>Person name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>contact</th>
       </tr>
     </thead>
 
@@ -21,7 +21,7 @@
           <button
             type="button"
             class="text-start btn btn-link p-0"
-            (click)="onSelect(patient.userId)"
+            (click)="onSelect(patient)"
           >
             {{ patient.userName }}
           </button>

@@ -62,7 +62,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private addAuthHeader(request: HttpRequest<any>) {
     const authHeader = this.loginService.getToken();
-
     if (authHeader && request.url.indexOf('Auth') < 0) {
       return request.clone({
         setHeaders: {
@@ -70,8 +69,6 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       });
     }
-    console.log(request);
-
     return request;
   }
 

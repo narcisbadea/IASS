@@ -20,10 +20,17 @@ public class AuthController : ControllerBase
     }
 
 
-    [HttpPost("register")]
-    public async Task<ActionResult<string>> SignUp([FromForm] RegisterUserDto auth)
+    [HttpPost("register-doctor")]
+    public async Task<ActionResult<string>> SignUpDoctor([FromForm] RegisterDoctorUserDto auth)
     {
-        var result = await _authService.SignUp(auth);
+        var result = await _authService.SignUpDoctor(auth);
+        return Ok(result);
+    }
+
+    [HttpPost("register-patient")]
+    public async Task<ActionResult<string>> SignUpPatient([FromForm] RegisterPatientUserDto auth)
+    {
+        var result = await _authService.SignUpPatient(auth);
         return Ok(result);
     }
 

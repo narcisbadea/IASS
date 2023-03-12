@@ -1,32 +1,34 @@
 <div class="card">
-  <form class="card-body" [formGroup]="languageForm" (ngSubmit)="onSubmit()">
+  <form class="card-body" [formGroup]="allergyForm" (ngSubmit)="onSubmit()">
     <h3 class="card-title text-uppercase">Add Allergie</h3>
     <div class="row row-cols-2 g-3">
       <div class="mb-3">
         <label for="languageNameArea" class="form-label">Allergie</label>
         <label for="languageNameArea" class="form-label text-danger">*</label>
-        <input
-          formControlName="name"
-          type=""
-          class="form-control"
-          id="surgeryNameArea"
-          placeholder="Name"
+        <ng-select
+          [items]="severities"
+          formControlName="severity"
+          [multiple]="false"
+          placeholder='Select a severity'
           [ngClass]="{
-            'is-invalid': submitted && languageForm.controls.name.errors
+            'is-invalid': submitted && allergyForm.controls.severity.errors
           }"
-        />
+        >
+        </ng-select>
       </div>
       <div class="mb-3">
         <label for="levelArea" class="form-label"> Category </label>
-        <label for="languageNameArea" class="form-label text-danger">*</label>
+        <label for="CategoryArea" class="form-label text-danger">*</label>
         <ng-select
-          [items]="MultiValues"
-          formControlName="level"
+          [items]="categories"
+          [compareWith]="compareFn"
+          bindLabel="name"
+          bindValue="id"
+          formControlName="categoryId"
           [multiple]="false"
           placeholder='Select a category'
-          id="levelArea"
           [ngClass]="{
-            'is-invalid': submitted && languageForm.controls.level.errors
+            'is-invalid': submitted && allergyForm.controls.categoryId.errors
           }"
         >
         </ng-select>
@@ -46,13 +48,13 @@
         ></textarea>
       </div>
     </div>
-    <ng-container *ngIf="!!surgeryId; else default">
+    <ng-container *ngIf="!!allergy; else default">
       <div class="row row-cols-2">
         <div class="d-flex flex-row justify-content-start mt-4">
           <button
             type="button"
             class="btn btn-secondary me-3"
-            (click)="deleteSurgery()"
+            (click)="deleteAllergy()"
           >
             <span *ngIf="!loadingDelete">Delete</span>
             <div

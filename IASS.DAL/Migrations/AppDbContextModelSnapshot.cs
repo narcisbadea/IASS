@@ -33,7 +33,7 @@ namespace IASS.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Severity")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -61,6 +61,45 @@ namespace IASS.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AllergyCategories");
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.Doctor", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RegisterCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.DoctorPatient", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("doctorPatients");
                 });
 
             modelBuilder.Entity("IASS.DAL.Entities.Role", b =>
@@ -93,14 +132,14 @@ namespace IASS.DAL.Migrations
                         new
                         {
                             Id = "9d22ff52-1a0d-4832-997f-27e57e68ec9e",
-                            ConcurrencyStamp = "42df34e2-64ee-4547-b37c-4072b2f166bd",
+                            ConcurrencyStamp = "08ce12c4-e5a5-41bd-bdd1-ae36daecb3e1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "b1a678cf-d7a2-415a-9a8f-52d51e067e88",
-                            ConcurrencyStamp = "78e5da76-abf8-4e3e-ae5e-3ce54064a177",
+                            ConcurrencyStamp = "ca6b8dd0-f0f4-4183-ab82-f27971f3f57e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -115,10 +154,9 @@ namespace IASS.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Age")
+                    b.Property<int?>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("CNP")
@@ -150,7 +188,6 @@ namespace IASS.DAL.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("MedicalHistory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -171,7 +208,6 @@ namespace IASS.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<byte[]>("Photo")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("SecurityStamp")
@@ -199,6 +235,48 @@ namespace IASS.DAL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.XRay", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("xRays");
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.XRayType", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("XRayTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -318,6 +396,47 @@ namespace IASS.DAL.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.Doctor", b =>
+                {
+                    b.HasOne("IASS.DAL.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.DoctorPatient", b =>
+                {
+                    b.HasOne("IASS.DAL.Entities.User", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId");
+
+                    b.HasOne("IASS.DAL.Entities.User", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("IASS.DAL.Entities.XRay", b =>
+                {
+                    b.HasOne("IASS.DAL.Entities.XRayType", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId");
+
+                    b.HasOne("IASS.DAL.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Type");
 
                     b.Navigation("User");
                 });

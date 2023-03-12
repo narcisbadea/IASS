@@ -23,31 +23,28 @@ export class AuthService extends BaseService {
   }
 
   /**
-   * Path part for operation authRegisterPost
+   * Path part for operation authRegisterDoctorPost
    */
-  static readonly AuthRegisterPostPath = '/Auth/register';
+  static readonly AuthRegisterDoctorPostPath = '/Auth/register-doctor';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `authRegisterPost$Plain()` instead.
+   * To access only the response body, use `authRegisterDoctorPost$Plain()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  authRegisterPost$Plain$Response(params?: {
+  authRegisterDoctorPost$Plain$Response(params?: {
     body?: {
-'Age'?: number;
 'FirstName'?: string;
 'LastName'?: string;
 'Email'?: string;
 'Telephone'?: string;
 'Password'?: string;
-'Address'?: string;
-'CNP'?: string;
 'Photo'?: Blob;
 }
   }): Observable<StrictHttpResponse<string>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthRegisterPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthRegisterDoctorPostPath, 'post');
     if (params) {
       rb.body(params.body, 'multipart/form-data');
     }
@@ -65,50 +62,44 @@ export class AuthService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `authRegisterPost$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `authRegisterDoctorPost$Plain$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  authRegisterPost$Plain(params?: {
+  authRegisterDoctorPost$Plain(params?: {
     body?: {
-'Age'?: number;
 'FirstName'?: string;
 'LastName'?: string;
 'Email'?: string;
 'Telephone'?: string;
 'Password'?: string;
-'Address'?: string;
-'CNP'?: string;
 'Photo'?: Blob;
 }
   }): Observable<string> {
 
-    return this.authRegisterPost$Plain$Response(params).pipe(
+    return this.authRegisterDoctorPost$Plain$Response(params).pipe(
       map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `authRegisterPost$Json()` instead.
+   * To access only the response body, use `authRegisterDoctorPost$Json()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  authRegisterPost$Json$Response(params?: {
+  authRegisterDoctorPost$Json$Response(params?: {
     body?: {
-'Age'?: number;
 'FirstName'?: string;
 'LastName'?: string;
 'Email'?: string;
 'Telephone'?: string;
 'Password'?: string;
-'Address'?: string;
-'CNP'?: string;
 'Photo'?: Blob;
 }
   }): Observable<StrictHttpResponse<string>> {
 
-    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthRegisterPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthRegisterDoctorPostPath, 'post');
     if (params) {
       rb.body(params.body, 'multipart/form-data');
     }
@@ -126,11 +117,38 @@ export class AuthService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `authRegisterPost$Json$Response()` instead.
+   * To access the full response (for headers, for example), `authRegisterDoctorPost$Json$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  authRegisterPost$Json(params?: {
+  authRegisterDoctorPost$Json(params?: {
+    body?: {
+'FirstName'?: string;
+'LastName'?: string;
+'Email'?: string;
+'Telephone'?: string;
+'Password'?: string;
+'Photo'?: Blob;
+}
+  }): Observable<string> {
+
+    return this.authRegisterDoctorPost$Json$Response(params).pipe(
+      map((r: StrictHttpResponse<string>) => r.body as string)
+    );
+  }
+
+  /**
+   * Path part for operation authRegisterPatientPost
+   */
+  static readonly AuthRegisterPatientPostPath = '/Auth/register-patient';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `authRegisterPatientPost$Plain()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  authRegisterPatientPost$Plain$Response(params?: {
     body?: {
 'Age'?: number;
 'FirstName'?: string;
@@ -141,10 +159,111 @@ export class AuthService extends BaseService {
 'Address'?: string;
 'CNP'?: string;
 'Photo'?: Blob;
+'DoctorCode'?: string;
+}
+  }): Observable<StrictHttpResponse<string>> {
+
+    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthRegisterPatientPostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'multipart/form-data');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<string>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `authRegisterPatientPost$Plain$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  authRegisterPatientPost$Plain(params?: {
+    body?: {
+'Age'?: number;
+'FirstName'?: string;
+'LastName'?: string;
+'Email'?: string;
+'Telephone'?: string;
+'Password'?: string;
+'Address'?: string;
+'CNP'?: string;
+'Photo'?: Blob;
+'DoctorCode'?: string;
 }
   }): Observable<string> {
 
-    return this.authRegisterPost$Json$Response(params).pipe(
+    return this.authRegisterPatientPost$Plain$Response(params).pipe(
+      map((r: StrictHttpResponse<string>) => r.body as string)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `authRegisterPatientPost$Json()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  authRegisterPatientPost$Json$Response(params?: {
+    body?: {
+'Age'?: number;
+'FirstName'?: string;
+'LastName'?: string;
+'Email'?: string;
+'Telephone'?: string;
+'Password'?: string;
+'Address'?: string;
+'CNP'?: string;
+'Photo'?: Blob;
+'DoctorCode'?: string;
+}
+  }): Observable<StrictHttpResponse<string>> {
+
+    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthRegisterPatientPostPath, 'post');
+    if (params) {
+      rb.body(params.body, 'multipart/form-data');
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<string>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `authRegisterPatientPost$Json$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  authRegisterPatientPost$Json(params?: {
+    body?: {
+'Age'?: number;
+'FirstName'?: string;
+'LastName'?: string;
+'Email'?: string;
+'Telephone'?: string;
+'Password'?: string;
+'Address'?: string;
+'CNP'?: string;
+'Photo'?: Blob;
+'DoctorCode'?: string;
+}
+  }): Observable<string> {
+
+    return this.authRegisterPatientPost$Json$Response(params).pipe(
       map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }

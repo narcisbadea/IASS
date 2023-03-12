@@ -3,5 +3,5 @@
 export interface AllergyToPostDto {
   categoryId?: null | string;
   description?: null | string;
-  name?: null | string;
+  severity?: null | string;
 }
